@@ -1,0 +1,128 @@
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    position: static;
+}
+
+#font {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 15%;
+    position: absolute;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#login {
+    padding-left: 30em;
+    padding-right: 30em;
+    padding-top: 8em;
+}
+
+#enunciado {
+    font-family: Helvetica;
+    border-collapse: initial;
+    width: 100%;
+}
+
+ul{
+    list-style-type: none;
+    padding-left:10em;
+    padding-right:10em;
+    margin: 0;
+    position: static;
+}
+
+ul1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#a{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #33cc00;
+}
+
+
+#a:hover {
+    background-color: grey;
+}
+
+#a.notActive{
+       background-color: black;
+}
+#a.active {
+    background-color:#33cc00;
+}
+
+.button {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: greenyellow;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #999;
+}
+
+.button:hover {background-color: lightgreen}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button1 {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: greenyellow;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #999;
+}
+
+.button1:hover {background-color: lightgreen}
+
+.button1:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+

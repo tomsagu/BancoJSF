@@ -6,9 +6,11 @@
 package banco.ejb;
 
 import banco.entity.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,27 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
+    public Usuario buscarPorDniYPassword(String dni, String password) {
+        Query q = this.em.createQuery("select u from Usuario u where u.dni = :d and u.contrasena = :p");
+        q.setParameter("d", dni);
+        q.setParameter("p", password);
+
+        List<Usuario> lista = q.getResultList();
+        if (lista == null || lista.size() == 0) {
+            return null;
+        } else {
+            return lista.get(0);
+        }
+    }
+    
+    public Usuario findByDni(String dni) {
+        Query q = this.em.createNamedQuery("Usuario.findByDni");
+        q.setParameter("dni",dni);
+        List<Usuario> lista = q.getResultList();
+        if (lista == null || lista.size() == 0) {
+            return null;
+        } else {
+            return lista.get(0);
+        }
+    }
 }

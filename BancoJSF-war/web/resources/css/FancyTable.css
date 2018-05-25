@@ -42,7 +42,7 @@
     width: 100%;
 }
 
-ul{
+.ul{
     list-style-type: none;
     padding-left:10em;
     padding-right:10em;
@@ -50,7 +50,7 @@ ul{
     position: static;
 }
 
-ul1 {
+.ul1 {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -124,5 +124,25 @@ ul1 {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+.td, .th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
 
+.tr:nth-child(even){background-color: #f2f2f2;}
 
+.tr:hover {background-color: #ddd;}
+
+.th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+.customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    position: static;
+}

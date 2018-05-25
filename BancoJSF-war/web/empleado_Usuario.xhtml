@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:outputStylesheet library="css" name="FancyTable.css"/>
+    <h:head>
+        <title>Lista Usuarios</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <table id ="enunciado">
+            <td> <h2>Hola #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos}</h2> </td>
+            <td><h:link outcome="login"  value="Salir"/></td>
+        </table>
+    </h:head>
+    <h:body>
+        <ul1 class="ul1">
+            <h:link id="a" class="active" outcome="empleado_Usuario" value="Usuarios"/>
+        </ul1>
+        <ul id="enunciado" class="ul">
+            <h3>Lista Usuarios</h3>
+        </ul>
+        <ul class="ul">
+            <h:form>
+                <h:dataTable value="#{empleadoBean.listaUsuarios}" var="listaUsuarios" styleClass="customers" headerClass="th"
+                             rowClasses="td tr" columnClasses="td tr" id = "customers">
+                    <h:column >
+                        <f:facet name="header">
+                            Nombre
+                        </f:facet>
+                        #{listaUsuarios.nombre}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Apellidos
+                        </f:facet>
+                        #{listaUsuarios.apellidos}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            DNI
+                        </f:facet>
+                        #{listaUsuarios.dni}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Teléfono
+                        </f:facet>
+                        #{listaUsuarios.telefono}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Email
+                        </f:facet>
+                        #{listaUsuarios.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Número de cuenta
+                        </f:facet>
+                        #{listaUsuarios.cuenta}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Alta
+                        </f:facet>
+                        <!--El !=0 es para pasar el short a boolean-->
+                        <h:selectBooleanCheckbox value="#{listaUsuarios.estado!=0}" disabled="true"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Editar Usuario
+                        </f:facet>
+                        <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditar(listaUsuarios.idUsuario)}"/>
+                    </h:column>  
+                    <h:column>
+                        <f:facet name="header">
+                            Movimientos
+                        </f:facet>
+                        <h:commandButton value="Movimientos" action="#{empleadoBean.doMovimientos(listaUsuarios.idUsuario)}" class="button1"/>
+                    </h:column> 
+                </h:dataTable>
+                <!--Comprobar nombre del outcome-->
+                    <h:button outcome="" value="Insertar Nuevo Usuario" class="button1"/> 
+                </h:form>
+        </ul>    
+    
+    
+            <!--%
+               
+
+            <td align="center"><a class="button1" href="Empleado_EditarServlet?id=<%= usuario.getIdUsuario()%>" >Editar</a></td>
+            <td align="center"><a class="button1" href="Empleado_MovimientosServlet?id=<%= usuario.getIdUsuario()%>" >Movimientos</a></td>
+        </tr>
+        <%       }
+            }
+        %-->    
+    
+    </h:body>
+</html>

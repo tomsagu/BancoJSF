@@ -54,4 +54,15 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             return lista.get(0);
         }
     }
+    
+    public List<Usuario> buscarUsuarios(Integer empleado) {
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e");
+        q.setParameter("e", empleado);
+        List<Usuario> lista = q.getResultList();
+        if (lista == null || lista.size() == 0) {
+            return null;
+        } else {
+            return lista;
+        }
+    }
 }

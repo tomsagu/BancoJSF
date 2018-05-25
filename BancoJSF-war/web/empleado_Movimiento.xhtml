@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:outputStylesheet library="css" name="FancyTable.css"/>
+    <h:head>
+        <title>Lista de Movimientos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <table id ="enunciado">
+            <td> <h2>Lista de Movimientos de #{empleadoBean.usuarioElegido.nombre} #{empleadoBean.usuarioElegido.apellidos}</h2> </td>
+            <td><h:link outcome="login"  value="Salir"/></td>
+        </table>
+    </h:head>
+    <h:body>
+        <ul1 class="ul1">
+            <h:link id="a" class="notActive" outcome="empleado_Usuario" value="Usuarios"/>
+        </ul1>
+        <ul id="enunciado" class="ul">
+            <h3>Lista de Movimientos</h3>
+        </ul>
+        <ul class="ul">
+            <h:form>
+                <h:dataTable value="#{empleadoBean.listaMovimientos}" var="listaMovimientos" styleClass="customers" headerClass="th"
+                             rowClasses="td tr" columnClasses="td tr" id = "customers">
+                    <h:column >
+                        <f:facet name="header">
+                            Nombre
+                        </f:facet>
+                        #{empleadoBean.usuarioElegido.nombre}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Apellidos
+                        </f:facet>
+                        #{empleadoBean.usuarioElegido.apellidos}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            DNI
+                        </f:facet>
+                        #{empleadoBean.usuarioElegido.dni}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Concepto
+                        </f:facet>
+                        #{listaMovimientos.concepto}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Tipo de Movimiento
+                        </f:facet>
+                        #{listaMovimientos.tipo}
+                    </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            Cantidad
+                        </f:facet>
+                        #{listaMovimientos.cantidad}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Entidad
+                        </f:facet>
+                        #{listaMovimientos.entidad}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Empleado Supervisor (DNI)
+                        </f:facet>
+                        #{empleadoBean.usuario.dni}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Editar Movimiento
+                        </f:facet>
+                        <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditarMovimiento(listaUsuarios.idUsuario,listaMovimientos.idMovimiento)}"/>
+                    </h:column>  
+                </h:dataTable>
+                <!--Comprobar nombre del outcome-->
+                <h:button outcome="" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioElegido.dni}" class="button1"/> 
+                </h:form>
+        </ul>         
+    </h:body>
+</html>
+

@@ -6,9 +6,11 @@
 package banco.ejb;
 
 import banco.entity.Movimiento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,11 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> {
 
     public MovimientoFacade() {
         super(Movimiento.class);
+    }
+    public List<Movimiento> buscarPorIdUsuario(Integer id) {
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.idUsuario = :i");
+        q.setParameter("i", id);
+        return q.getResultList();
     }
     
 }

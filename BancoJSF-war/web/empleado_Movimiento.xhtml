@@ -9,7 +9,7 @@
         <title>Lista de Movimientos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <table id ="enunciado">
-            <td> <h2>Lista de Movimientos de #{empleadoBean.usuarioElegido.nombre} #{empleadoBean.usuarioElegido.apellidos}</h2> </td>
+            <td> <h2>Lista de Movimientos de #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2> </td>
             <td><h:link outcome="login"  value="Salir"/></td>
         </table>
     </h:head>
@@ -28,19 +28,19 @@
                         <f:facet name="header">
                             Nombre
                         </f:facet>
-                        #{empleadoBean.usuarioElegido.nombre}
+                        #{empleadoBean.usuarioSeleccionado.nombre}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Apellidos
                         </f:facet>
-                        #{empleadoBean.usuarioElegido.apellidos}
+                        #{empleadoBean.usuarioSeleccionado.apellidos}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             DNI
                         </f:facet>
-                        #{empleadoBean.usuarioElegido.dni}
+                        #{empleadoBean.usuarioSeleccionado.dni}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -76,13 +76,12 @@
                         <f:facet name="header">
                             Editar Movimiento
                         </f:facet>
-                        <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditarMovimiento(listaUsuarios.idUsuario,listaMovimientos.idMovimiento)}"/>
+                        <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditarMovimiento(listaMovimientos.idMovimiento)}"/>
                     </h:column>  
                 </h:dataTable>
                 <!--Comprobar nombre del outcome-->
-                <h:button outcome="" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioElegido.dni}" class="button1"/> 
+                <h:button outcome="" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/> 
                 </h:form>
         </ul>         
     </h:body>
 </html>
-

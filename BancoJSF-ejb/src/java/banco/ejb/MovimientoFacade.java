@@ -36,4 +36,14 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> {
         return q.getResultList();
     }
     
+    public List<Movimiento> BuscarMovimientoPorDni(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.fecha asc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+        
+    }
+    
 }

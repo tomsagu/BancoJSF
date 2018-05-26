@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Transferencia</title>
+    </h:head>
+    <h:body>
+        <ul1>
+            <h:link class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
+            <h:link class="notActive" outcome="usuario_Movimientos" value="Movimientos"/>
+            <h:link class="active" outcome="usuario_Transferencia" value="Transferencias"/>
+        </ul1>        
+        <h:form>
+            <table  border="1" bgcolor="beige" align="center" width="60%">
+                <tr>
+                    <td>BENEFICIARIO:</td>
+                    <td><h:inputText value="#{transferenciaBean.movimiento.entidad}"></h:inputText>
+                    </td>                    
+                </tr>                
+                <tr>
+                    <td>CONCEPTO:</td>
+                    <td><h:inputText value="#{transferenciaBean.movimiento.concepto}"></h:inputText></td>                    
+                </tr>
+                <tr>
+                    <td>CANTIDAD:</td>
+                    <td><h:inputText value="#{transferenciaBean.cantidad}"></h:inputText></td>
+                </tr>
+            </table>
+            <h:commandButton value="Enviar" action="#{transferenciaBean.doTransferencia()}"></h:commandButton>
+        </h:form>
+        <a href="login.xhtml">Salir</a>
+    </h:body>
+</html>
+

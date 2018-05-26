@@ -79,8 +79,7 @@
                         <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditarMovimiento(listaMovimientos.idMovimiento)}"/>
                     </h:column>  
                 </h:dataTable>
-                <!--Comprobar nombre del outcome-->
-                <h:button outcome="" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/> 
+                <h:button outcome="empleado_nuevoeditarMovimiento" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/> 
                 </h:form>
         </ul>         
     </h:body>

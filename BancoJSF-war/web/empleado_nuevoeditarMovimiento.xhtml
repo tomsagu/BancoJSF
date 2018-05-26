@@ -12,7 +12,7 @@
     <h:body>
         <h1>Crear/EditarMovimiento</h1>
         <h:form>
-            <table>
+            <table id="customers">
                 <tr>
                     <td>Concepto:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.concepto}"/></td>
@@ -23,19 +23,19 @@
                 </tr>
                 <tr>
                     <td>Cantidad:</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.cantidad}"/>
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.cantidad}"/>
                     </td>                    
                 </tr>
                 <tr>
                     <td>Tipo de Movimiento:</td>
                     <td><h:selectOneMenu value="#{empleadoCrearMovimientoBean.movimiento.tipo}" >
-                                <f:selectItem  itemValue="Ingreso" 
+                                <f:selectItem  itemValue="ingreso" 
                                                itemLabel="Ingreso"          
                                                />
-                                 <f:selectItem  itemValue="Debito" 
+                                 <f:selectItem  itemValue="debito" 
                                                itemLabel="Debito"          
                                                />
-                                  <f:selectItem  itemValue="Transferencia" 
+                                  <f:selectItem  itemValue="transferencia" 
                                                itemLabel="Transferencia"          
                                                />
                                                
@@ -47,11 +47,11 @@
                 </tr>
                 <tr>
                     <td>Usuario Receptor(id)::</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario}"/></td>                    
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario.idUsuario}"/></td>                    
                 </tr> 
                  <tr>
                     <td>Empleado Supervisor(id):</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario1}"/></td>                    
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario1.idUsuario}"/></td>                    
                 </tr>               
             </table>
             <h:commandButton action="#{empleadoCrearMovimientoBean.doGuardar()}" value="Enviar" />

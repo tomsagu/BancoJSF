@@ -13,8 +13,7 @@ and open the template in the editor.
         <!-- Bootstrap CSS -->
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
-        <link type="text/css" href="signin.css" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>      
         <h:outputStylesheet library="css" name="FancyTable.css"/>
 
         <title>Inicio de Sesión</title>
@@ -23,18 +22,23 @@ and open the template in the editor.
     <h:body class="bg-light">
         <!--Como cerrar la sesion para eliminar el usuario-->
         
-        
-        <center> <h1>Inicio de Sesión</h1></center> 
-        <div id="login"> 
+        <div id="login">
+            <center> <h1>Inicio de Sesión</h1></center> <br></br>
+         
             <h:form class="form-signin">
                 <table>
                     <tr>
-                        <td>DNI:</td>
-                        <td><h:inputText class="form-control"  value="#{loginBean.usuario.dni}"/></td>                    
+                        <center>DNI:</center>
                     </tr>
                     <tr>
-                        <td>CONTRASEÑA:</td>
-                        <td><h:inputSecret class="form-control" value="#{loginBean.usuario.contrasena}"/></td>                    
+                        <center><h:inputText class="form-control"  value="#{loginBean.usuario.dni}"/> </center> <br></br>
+                    </tr>                 
+                    
+                    <tr>
+                       <center> CONTRASEÑA:</center>
+                    </tr>
+                    <tr>
+                       <center> <h:inputSecret class="form-control" value="#{loginBean.usuario.contrasena}"/></center><br></br>             
                     </tr>
 
                 </table>

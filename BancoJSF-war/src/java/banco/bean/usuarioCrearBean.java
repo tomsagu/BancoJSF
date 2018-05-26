@@ -29,6 +29,7 @@ public class usuarioCrearBean {
     private UsuarioFacade usuarioFacade;
 
     protected Usuario usuario;
+    protected Boolean alta;
     
     /**
      * Creates a new instance of usuarioCrearBean
@@ -44,7 +45,18 @@ public class usuarioCrearBean {
         this.usuario = usuario;
     }
 
+    public Boolean getAlta() {
+        return alta;
+    }
+
+    public void setAlta(Boolean alta) {
+        this.alta = alta;
+    }
+    
     public String doGuardar() {
+        short estado = (short)(alta?1:0);
+        usuario.setEstado(estado);
+        
         if (usuario.getIdUsuario() == null) {
             this.usuarioFacade.create(usuario);
         } else {

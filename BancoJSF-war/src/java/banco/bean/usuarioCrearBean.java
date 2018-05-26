@@ -23,7 +23,7 @@ import javax.inject.Inject;
 public class usuarioCrearBean {
 
     @Inject 
-    private UsuarioBean usuarioBean; //Bean que controla el listado de usuario
+    private EmpleadoBean empleadoBean;
     
     @EJB
     private UsuarioFacade usuarioFacade;
@@ -51,16 +51,16 @@ public class usuarioCrearBean {
             this.usuarioFacade.edit(usuario);
         }
         
-        this.usuarioBean.init();
+        this.empleadoBean.init();
         
-        return "index";
+        return "empleado_Usuario";
     }
     
     @PostConstruct
     public void init() {
-       if (this.usuarioBean.getIdUsuarioSeleccionado() != -1) {
-           this.usuario = this.usuarioFacade.find(this.usuarioBean.getIdUsuarioSeleccionado());
-           this.usuarioBean.setIdUsuarioSeleccionado = -1;
+       if (this.empleadoBean.getUsuarioSeleccionado() != null) {
+           this.usuario = this.empleadoBean.getUsuarioSeleccionado();
+           this.empleadoBean.setUsuarioSeleccionado(null);
        } else {
            usuario = new Usuario();
        }

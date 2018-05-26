@@ -5,11 +5,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
         <h:head>
         <title>Crear/Editar Usuario</title>
+        <h:outputStylesheet library="css" name="FancyTable.css"/>
     </h:head>
     <h:body>
+        <ul>
         <h1>Crear/Editar Usuario</h1>
+        
         <h:form>
-            <table>
+            <table id="customers">
                 <tr>
                     <td><b>Nombre:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.nombre}"/></td>
@@ -24,7 +27,7 @@
                 </tr>
                 <tr>
                     <td><b>Contraseña:</b></td>
-                    <td><h:inputSecret value="#{usuarioCrearBean.usuario.contraseña}"/></td>                    
+                    <td><h:inputSecret value="#{usuarioCrearBean.usuario.contrasena}"/></td>                    
                 </tr>
                 <tr>
                     <td><b>Telefono:</b></td>
@@ -40,14 +43,15 @@
                 </tr>
                 <tr>
                     <td><b>Numero de cuenta:</b></td>
-                    <td><h:inputText value="#{usuarioCrearBean.usuario.numerocuenta}"/></td>                    
+                    <td><h:inputText value="#{usuarioCrearBean.usuario.cuenta}"/></td>                    
                 </tr>
                 <tr>
                     <td><b>Alta:</b></td>
-                    <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.usuario.alta}"/></td>
+                    <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.usuario.estado != 0}"/></td>
                 </tr>
             </table>
-            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar" />
+            <br></br><h:commandButton class="button" action="#{usuarioCrearBean.doGuardar()}" value="Enviar" />
         </h:form>
+        </ul>
     </h:body>
 </html>

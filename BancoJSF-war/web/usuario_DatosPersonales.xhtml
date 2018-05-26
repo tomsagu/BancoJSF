@@ -7,21 +7,21 @@
     <h:outputStylesheet library="css" name="FancyTable.css"/>
 
     <h:head>
-        <title>Facelet Title</title>
+        <title>Datos Personales</title>
     </h:head>
     <h:body>
         
        <ul1>
             <h:link id="a" class="active" outcome="usuario_DatosPersonales" value="Datos Personales"/>
             <h:link id="a" class="notActive" outcome="usuario_Movimientos" value="Movimientos"/>
-            <h:link id="a" class="notActive" outcome="usuario_DatosPersonales" value="Transferencias"/>
+            <h:link id="a" class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
         </ul1>
         
         <ul> 
         <table id="customers">
             <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
             
-                <td><h:link outcome="login"  value="Salir"/></td></tr>
+                <td><a href="login.xhtml">Salir</a></td></tr>
             
             
             
@@ -53,10 +53,11 @@
                 <td><b>Número de cuenta corriente</b></td>
                 <td>#{loginBean.usuario.cuenta} </td>
             </tr>
-
-
+            <tr>
+                <td><b>Saldo</b></td>
+                <td>#{loginBean.usuario.saldo}</td>
+            </tr>
         </table>
-
         </ul>
     </h:body>
 </html>

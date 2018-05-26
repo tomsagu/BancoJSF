@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Movimientos</title>
+        <link rel="stylesheet" href="css/FancyTable.css"></link>
+    </h:head>
+    <h:body>
+        <h:panelGrid id = "panel" columns = "1" cellspacing = "1" width="100%"> 
+            <ul1>
+                <li><a class="notActive" href="usuario_DatosPersonales">Datos Personales</a></li>
+                <li><a class="active" href="usuario_Movimientos">Movimientos</a></li>
+                <li><a class="notActive" href="usuario_DatosPersonales" >Transferencias</a></li>
+            </ul1>
+
+            <h:dataTable value="#{loginBean.usuario.movimientoList}" var="movimientos" class="table table-striped" border="1" style="width:60%">
+                <h:column>
+                    <f:facet name="header">
+                        Fecha
+                    </f:facet>
+                        #{movimientos.fecha}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Entidad
+                    </f:facet>
+                        #{movimientos.entidad}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Concepto
+                    </f:facet>
+                        #{movimientos.concepto}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Cantidad
+                    </f:facet>
+                        #{movimientos.cantidad}
+                </h:column>
+            </h:dataTable>
+        </h:panelGrid>
+        <a href="login.xhtml">Salir</a>
+    </h:body>
+</html>
+

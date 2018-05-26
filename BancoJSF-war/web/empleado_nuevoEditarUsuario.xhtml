@@ -5,14 +5,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
         <h:head>
         <title>Crear/Editar Usuario</title>
-        <h:outputStylesheet library="css" name="FancyTable.css"/>
     </h:head>
     <h:body>
-        <ul>
         <h1>Crear/Editar Usuario</h1>
-        
         <h:form>
-            <table id="customers">
+            <table>
                 <tr>
                     <td><b>Nombre:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.nombre}"/></td>
@@ -47,11 +44,10 @@
                 </tr>
                 <tr>
                     <td><b>Alta:</b></td>
-                    <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.usuario.estado != 0}"/></td>
+                    <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.alta}"/></td>
                 </tr>
             </table>
-            <br></br><h:commandButton class="button" action="#{usuarioCrearBean.doGuardar()}" value="Enviar" />
+            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar" />
         </h:form>
-        </ul>
     </h:body>
 </html>

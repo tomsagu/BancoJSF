@@ -58,8 +58,9 @@ public class usuarioCrearBean {
         usuario.setEstado(estado);
         
         if (usuario.getIdUsuario() == null) {
+            usuario.setEmpleado((short)0);
             this.usuarioFacade.create(usuario);
-        } else {
+        } else { //No entra nunca por este else
             this.usuarioFacade.edit(usuario);
         }
         
@@ -70,10 +71,10 @@ public class usuarioCrearBean {
     
     @PostConstruct
     public void init() {
-       if (this.empleadoBean.getUsuarioSeleccionado() != null) {
+       if (this.empleadoBean.getUsuarioSeleccionado() != null) { //Editar
            this.usuario = this.empleadoBean.getUsuarioSeleccionado();
            this.empleadoBean.setUsuarioSeleccionado(null);
-       } else {
+       } else { //Crear
            usuario = new Usuario();
        }
     }

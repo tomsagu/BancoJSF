@@ -3,46 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:outputStylesheet library="css" name="FancyTable.css"/>
     <h:head>
         <title>Movimientos</title>
-        <link rel="stylesheet" href="css/FancyTable.css"></link>
+        
     </h:head>
     <h:body>
+        <ul1>
+            <h:link id="a" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
+            <h:link id="a" class="active" outcome="usuario_Movimientos" value="Movimientos"/>
+            <h:link id="a" class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
+            <a href="login.xhtml">Salir</a>
+        </ul1>
         <h:panelGrid id = "panel" columns = "1" cellspacing = "1" width="100%"> 
-            <ul1>
-                <h:link id="a" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
-                <h:link id="a" class="active" outcome="usuario_Movimientos" value="Movimientos"/>
-                <h:link id="a" class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
-            </ul1>
 
-            <h:dataTable value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" class="table table-striped" border="1" style="width:60%">
-                <h:column>
-                    <f:facet name="header">
-                        Fecha
-                    </f:facet>
+            <ul>
+                <h:dataTable id="customers" value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" class="table table-striped" border="1" style="width:60%">
+                    <h:column>
+                        <f:facet name="header">
+                            Fecha
+                        </f:facet>
                         #{movimientos.fecha}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Entidad
-                    </f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Entidad
+                        </f:facet>
                         #{movimientos.entidad}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Concepto
-                    </f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Concepto
+                        </f:facet>
                         #{movimientos.concepto}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Cantidad
-                    </f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Cantidad
+                        </f:facet>
                         #{movimientos.cantidad}
-                </h:column>
-            </h:dataTable>
+                    </h:column>
+                </h:dataTable>
+            </ul>
         </h:panelGrid>
-        <a href="login.xhtml">Salir</a>
+        
     </h:body>
 </html>
 

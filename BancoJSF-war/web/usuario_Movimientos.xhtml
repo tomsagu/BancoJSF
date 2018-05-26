@@ -5,16 +5,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Movimientos</title>
-         <h:outputStylesheet library="css" name="FancyTable.css"/>
+        <link rel="stylesheet" href="css/FancyTable.css"></link>
     </h:head>
     <h:body>
-        <ul1>
-            <h:link id="a" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
-            <h:link id="a" class="active" outcome="usuario_Movimientos" value="Movimientos"/>
-            <h:link id="a" class="notActive" outcome="usuario_DatosPersonales" value="Transferencias"/>
-        </ul1>
         <h:panelGrid id = "panel" columns = "1" cellspacing = "1" width="100%"> 
-            <h:dataTable id="customers" value="#{loginBean.usuario.movimientoList}" var="movimientos" class="table table-striped" border="1" style="width:60%">
+            <ul1>
+                <h:link id="a" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
+                <h:link id="a" class="active" outcome="usuario_Movimientos" value="Movimientos"/>
+                <h:link id="a" class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
+            </ul1>
+
+            <h:dataTable value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" class="table table-striped" border="1" style="width:60%">
                 <h:column>
                     <f:facet name="header">
                         Fecha

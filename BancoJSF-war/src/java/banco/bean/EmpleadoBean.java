@@ -35,8 +35,8 @@ public class EmpleadoBean {
     protected Usuario usuario;
     protected List<Usuario> listaUsuarios;
     protected List<Movimiento> listaMovimientos;
-    private Usuario usuarioElegido;
-    private Movimiento movimientoSeleccionado;
+    private Usuario usuarioSeleccionado;
+    private Integer idMovimientoSeleccionado = -1;
 
    
     public Usuario getUsuario() {
@@ -62,22 +62,22 @@ public class EmpleadoBean {
         this.listaMovimientos = listaMovimientos;
     }
 
-    public Usuario getUsuarioElegido() {
-        return usuarioElegido;
+    public Usuario getUsuarioSeleccionado() {
+        return usuarioSeleccionado;
     }
 
-    public void setUsuarioElegido(Usuario usuarioElegido) {
-        this.usuarioElegido = usuarioElegido;
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
     }
 
-    public Movimiento getMovimientoSeleccionado() {
-        return movimientoSeleccionado;
+    public Integer getIdMovimientoSeleccionado() {
+        return idMovimientoSeleccionado;
     }
 
-    public void setMovimientoSeleccionado(Movimiento movimientoSeleccionado) {
-        this.movimientoSeleccionado = movimientoSeleccionado;
+    public void setIdMovimientoSeleccionado(Integer idMovimientoSeleccionado) {
+        this.idMovimientoSeleccionado = idMovimientoSeleccionado;
     }
-
+    
     
     /**
      * Creates a new instance of EmpleadoBean
@@ -93,26 +93,21 @@ public class EmpleadoBean {
     }
     public String doEditar(Integer id){
         if (id != null) { // Caso de uso editar
-            usuarioElegido = this.usuarioFacade.find(id);
+            usuarioSeleccionado = this.usuarioFacade.find(id);
         }
-        //Comprobar nombre
-        return "nuevoEditarUsuario";
+        return "empleado_nuevoEditarUsuario";
     }
     public String doMovimientos(Integer id){
         if (id != null) { // Caso de uso editar
-            usuarioElegido = this.usuarioFacade.find(id);
+            usuarioSeleccionado = this.usuarioFacade.find(id);
         }
         listaMovimientos = this.movimientoFacade.buscarPorIdUsuario(id);
         return "empleado_Movimiento";
     }
     
-    public String doEditarMovimiento(Integer idUsuario, Integer idMovimiento){
-        //Comprobar el return
-        if (idUsuario != null) { // Caso de uso editar
-            usuarioElegido = this.usuarioFacade.find(idUsuario);
-        }
-        movimientoSeleccionado = this.movimientoFacade.find(idMovimiento);
-        return "empleado_nuevoEditarMovimiento";
+    public String doEditarMovimiento(Integer idMovimiento){
+        idMovimientoSeleccionado = idMovimiento;
+        return "empleado_nuevoeditarMovimiento";
     }
     
 }

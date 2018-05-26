@@ -6,7 +6,11 @@
 package banco.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -95,8 +99,16 @@ public class Movimiento implements Serializable {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFecha(String fecha) {
+        String fechaAMD = fecha.substring(0, 9);
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date date = null;
+            try {
+                date = format.parse(fechaAMD);
+            } catch (ParseException ex) {
+               // Logger.getLogger(Empleado_CrearMovimientoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        this.fecha = date;
     }
 
     public String getEntidad() {
@@ -112,6 +124,7 @@ public class Movimiento implements Serializable {
     }
 
     public void setConcepto(String concepto) {
+
         this.concepto = concepto;
     }
 
@@ -119,8 +132,9 @@ public class Movimiento implements Serializable {
         return cantidad;
     }
 
-    public void setCantidad(Double cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidad(String cantidad) {
+       
+        this.cantidad = Double.parseDouble(cantidad);
     }
 
     public Usuario getUsuarioidUsuario() {

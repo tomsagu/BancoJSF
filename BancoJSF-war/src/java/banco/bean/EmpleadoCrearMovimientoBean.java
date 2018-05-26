@@ -9,6 +9,11 @@ import banco.ejb.MovimientoFacade;
 import banco.ejb.UsuarioFacade;
 import banco.entity.Movimiento;
 import banco.entity.Usuario;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -31,12 +36,14 @@ public class EmpleadoCrearMovimientoBean {
     private MovimientoFacade movimientoFacade;
     
     @Inject
-    private MovimientoBean movimientoBean;
+    private EmpleadoBean empleadoBean;
+    @Inject
+    private LoginBean loginBean;
     
-     protected Movimiento movimiento;
-     protected String cantidad;
-    
-    
+   protected Movimiento movimiento;
+ 
+
+   
     /**
      * Creates a new instance of empleadoCrearMovimientoBean
      */
@@ -50,37 +57,26 @@ public class EmpleadoCrearMovimientoBean {
     public void setMovimiento(Movimiento movimiento) {
         this.movimiento = movimiento;
     }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-    }
     
     
     public String doGuardar() {
-        movimiento.setCantidad(Double.parseDouble(cantidad));
-        
-        
-        
+            
         if (movimiento.getIdMovimiento() == null) {
             this.movimientoFacade.create(movimiento);
         } else {
             this.movimientoFacade.edit(movimiento);            
         }
         
-        if(movimiento.getTipo().equals("ingreso")){
-                Usuario x = this.usuarioFacade.find(movimiento.getUsuarioidUsuario());
+            if(movimiento.getTipo().equals("ingreso")){
+                Usuario x = movimiento.getUsuarioidUsuario();
                 x.setSaldo(x.getSaldo()+ movimiento.getCantidad());
                 this.usuarioFacade.edit(x);
             }else if(movimiento.getTipo().equals("debito")){
-               Usuario x = this.usuarioFacade.find(movimiento.getUsuarioidUsuario());
+               Usuario x = movimiento.getUsuarioidUsuario();
                 x.setSaldo(x.getSaldo()- movimiento.getCantidad());
                 this.usuarioFacade.edit(x); 
             }else{
-                Usuario x = this.usuarioFacade.find(movimiento.getUsuarioidUsuario());
+                Usuario x = movimiento.getUsuarioidUsuario();
                 x.setSaldo(x.getSaldo()-movimiento.getCantidad());
                 this.usuarioFacade.edit(x);
                 Usuario y = this.usuarioFacade.findByDni(movimiento.getEntidad());
@@ -88,7 +84,7 @@ public class EmpleadoCrearMovimientoBean {
                 this.usuarioFacade.edit(y);
             }
         
-        this.movimientoBean.init();
+        this.empleadoBean.init();
         
         return "empleado_Movimiento";
     }
@@ -96,11 +92,13 @@ public class EmpleadoCrearMovimientoBean {
     
      @PostConstruct
     public void init () {
-        if (this.movimientoBean.getIdMovimientoSeleccionado() != -1) { // Editar
+        if (this.empleadoBean.getIdMovimientoSeleccionado() != -1) { // Editar
             this.movimiento = this.movimientoFacade.find(this.empleadoBean.getIdMovimientoSeleccionado());
-            this.movimientoBean.setIdMovimientoSeleccionado(-1);
-        } else { // Nuevo cliente
+            this.empleadoBean.setIdMovimientoSeleccionado(-1);
+        } else { // Nuevo Movimiento
             movimiento = new Movimiento();
+            movimiento.setUsuarioidUsuario(empleadoBean.getUsuarioSeleccionado());
+            movimiento.setUsuarioidUsuario1(loginBean.getUsuario());
         }
     }
 }

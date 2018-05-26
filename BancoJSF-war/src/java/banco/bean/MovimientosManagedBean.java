@@ -14,16 +14,38 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 /**
  *
  * @author Alexander
  */
 @Named(value = "movimientosManagedBean")
-@Dependent
+@RequestScoped
 public class MovimientosManagedBean implements Serializable {
+    
+    @EJB
+    private MovimientoFacade movimientoFacade;
 
+    @EJB
+    private UsuarioFacade usuarioFacade;
+    
+    @Inject
+    private LoginBean login;
+    
+    List<Movimiento> listaMovimientos;
+
+    public List<Movimiento> getListaMovimientos() {
+        return listaMovimientos;
+    }
+
+    public void setListaMovimientos(List<Movimiento> listaMovimientos) {
+        this.listaMovimientos = listaMovimientos;
+    }
+    
+    
+    
     /**
      * Creates a new instance of MovimientosManagedBean
      */
@@ -32,6 +54,7 @@ public class MovimientosManagedBean implements Serializable {
     
     @PostConstruct
     public void init(){
+        listaMovimientos = this.movimientoFacade.BuscarMovimientoPorDni(login.usuario.getDni());
     }
     
 }

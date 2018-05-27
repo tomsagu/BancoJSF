@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 
 /**
  *
@@ -63,7 +64,7 @@ public class LoginBean implements Serializable{
         }
     }
     
-    public String borrarSesion(){
+    public String borrarSesion(ComponentSystemEvent event){
         usuario = new Usuario();
         return "login";
     }

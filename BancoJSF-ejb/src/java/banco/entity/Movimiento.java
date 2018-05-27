@@ -99,16 +99,9 @@ public class Movimiento implements Serializable {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        String fechaAMD = fecha.substring(0, 9);
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            Date date = null;
-            try {
-                date = format.parse(fechaAMD);
-            } catch (ParseException ex) {
-               // Logger.getLogger(Empleado_CrearMovimientoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        this.fecha = date;
+    public void setFecha(Date fecha) {
+       
+        this.fecha = fecha;
     }
 
     public String getEntidad() {
@@ -132,9 +125,9 @@ public class Movimiento implements Serializable {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(Double cantidad) {
        
-        this.cantidad = Double.parseDouble(cantidad);
+        this.cantidad = cantidad;
     }
 
     public Usuario getUsuarioidUsuario() {

@@ -37,7 +37,7 @@ public class EmpleadoBean implements Serializable{
     protected Usuario usuario;
     protected List<Usuario> listaUsuarios;
     protected List<Movimiento> listaMovimientos;
-    private Usuario usuarioSeleccionado;
+    private Usuario usuarioSeleccionado = null;
     private Integer idMovimientoSeleccionado = -1;
 
    
@@ -92,6 +92,7 @@ public class EmpleadoBean implements Serializable{
        usuario = this.loginBean.getUsuario();
        //Crea la lista solo con los usuarios (clientes del banco), no empleados
        this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0);
+      
     }
     public String doEditar(Integer id){
         if (id != null) { // Caso de uso editar

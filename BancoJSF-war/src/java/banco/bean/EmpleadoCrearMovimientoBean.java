@@ -41,6 +41,15 @@ public class EmpleadoCrearMovimientoBean {
     private LoginBean loginBean;
     
    protected Movimiento movimiento;
+   protected String fecha;
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
  
 
    
@@ -58,10 +67,32 @@ public class EmpleadoCrearMovimientoBean {
         this.movimiento = movimiento;
     }
     
+    @PostConstruct
+    public void init () {
+        if (this.empleadoBean.getIdMovimientoSeleccionado() != -1) { // Editar
+            this.movimiento = this.movimientoFacade.find(this.empleadoBean.getIdMovimientoSeleccionado());
+            this.fecha = this.movimiento.getFecha().toString();
+            
+        } else { // Nuevo Movimiento
+            movimiento = new Movimiento();
+            movimiento.setUsuarioidUsuario(empleadoBean.getUsuarioSeleccionado());
+            movimiento.setUsuarioidUsuario1(loginBean.getUsuario());
+        }
+    }
     
     public String doGuardar() {
             
         if (movimiento.getIdMovimiento() == null) {
+            
+            String fechaAMD = fecha.substring(0, 9);
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date date = null;
+            try {
+                date = format.parse(fechaAMD);
+            } catch (ParseException ex) {
+               // Logger.getLogger(Empleado_CrearMovimientoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.movimiento.setFecha(date);
             this.movimientoFacade.create(movimiento);
         } else {
             this.movimientoFacade.edit(movimiento);            
@@ -83,22 +114,11 @@ public class EmpleadoCrearMovimientoBean {
                 y.setSaldo(y.getSaldo()+movimiento.getCantidad());
                 this.usuarioFacade.edit(y);
             }
-        
-        this.empleadoBean.init();
+            
+        this.empleadoBean.setIdMovimientoSeleccionado(-1);
+        this.empleadoBean.setListaMovimientos(this.movimientoFacade.buscarPorIdUsuario(this.empleadoBean.getUsuarioSeleccionado().getIdUsuario()));
         
         return "empleado_Movimiento";
     }
-    
-    
-     @PostConstruct
-    public void init () {
-        if (this.empleadoBean.getIdMovimientoSeleccionado() != -1) { // Editar
-            this.movimiento = this.movimientoFacade.find(this.empleadoBean.getIdMovimientoSeleccionado());
-            this.empleadoBean.setIdMovimientoSeleccionado(-1);
-        } else { // Nuevo Movimiento
-            movimiento = new Movimiento();
-            movimiento.setUsuarioidUsuario(empleadoBean.getUsuarioSeleccionado());
-            movimiento.setUsuarioidUsuario1(loginBean.getUsuario());
-        }
-    }
+   
 }

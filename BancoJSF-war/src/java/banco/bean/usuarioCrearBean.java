@@ -53,29 +53,36 @@ public class usuarioCrearBean {
         this.alta = alta;
     }
     
+    @PostConstruct
+    public void init() {
+       if (this.empleadoBean.getUsuarioSeleccionado() != null) { //Editar
+           this.usuario = this.empleadoBean.getUsuarioSeleccionado();
+           if(this.usuario.getEstado() == 1){
+               this.alta = true;
+           }else{
+               this.alta = false;
+           }
+           
+       } else { //Crear
+           usuario = new Usuario();
+       }
+    }
+    
     public String doGuardar() {
         short estado = (short)(alta?1:0);
         usuario.setEstado(estado);
+        usuario.setEmpleado((short)0);
         
-        if (usuario.getIdUsuario() == null) {
-            usuario.setEmpleado((short)0);
-            this.usuarioFacade.create(usuario);
-        } else { //No entra nunca por este else
+        if (usuario.getIdUsuario() != null) {
             this.usuarioFacade.edit(usuario);
+        } else {  
+            this.usuarioFacade.create(usuario);
         }
-        
+        this.empleadoBean.setUsuarioSeleccionado(null);
         this.empleadoBean.init();
         
         return "empleado_Usuario";
     }
     
-    @PostConstruct
-    public void init() {
-       if (this.empleadoBean.getUsuarioSeleccionado() != null) { //Editar
-           this.usuario = this.empleadoBean.getUsuarioSeleccionado();
-           this.empleadoBean.setUsuarioSeleccionado(null);
-       } else { //Crear
-           usuario = new Usuario();
-       }
-    }
+
 }

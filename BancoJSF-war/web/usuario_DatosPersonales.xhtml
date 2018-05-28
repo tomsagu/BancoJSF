@@ -12,12 +12,14 @@
     <h:body>
 
         <ul1>
-            <h:link id="a" class="active" outcome="usuario_DatosPersonales" value="Datos Personales"/>
-            <h:link id="a" class="notActive" outcome="usuario_Movimientos" value="Movimientos"/>
-            <h:link id="a" class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
+             <h:link  class="notActive" outcome="usuario_Movimientos" value="Movimientos"/>
+            <h:link  class="active" outcome="usuario_DatosPersonales" value="Datos Personales"/>
+           
+            <h:link  class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
         </ul1>
 
         <ul> 
+            <h:form>
             <table id="customers">
                 <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
 
@@ -43,11 +45,51 @@
                 </tr>
                 <tr>
                     <td><b>Teléfono</b></td>
-                    <td>#{loginBean.usuario.telefono}</td>
+                    <td>(<i>Editar?
+                            <h:selectBooleanCheckbox value="#{loginBean.levelEditable}">
+                                <f:ajax render="@form"/>
+                            </h:selectBooleanCheckbox></i>)    
+                        <h:inputText value="#{loginBean.usuario.telefono}" size="12" rendered="#{loginBean.levelEditable}"/>
+                        <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable}">
+                            <f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
+                        <h:outputText value="#{loginBean.usuario.telefono}" 
+                                      rendered="#{!loginBean.levelEditable}"/>
+                        
+                        
+                        </td>
                 </tr>
                 <tr>
                     <td><b>Email</b></td>
-                    <td>#{loginBean.usuario.email}</td>
+                    <td>(<i>Editar?
+                            <h:selectBooleanCheckbox value="#{loginBean.levelEditable1}">
+                                <f:ajax render="@form"/>
+                            </h:selectBooleanCheckbox></i>)    
+                        <h:inputText value="#{loginBean.usuario.email}" size="12" rendered="#{loginBean.levelEditable1}"/>
+                        <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable1}">
+                            <f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
+                        <h:outputText value="#{loginBean.usuario.email}" 
+                                      rendered="#{!loginBean.levelEditable1}"/>
+                        
+                        
+                        </td>
+                </tr>
+                <tr>
+                    <td><b>Domicilio</b></td>
+                    <td>(<i>Editar?
+                            <h:selectBooleanCheckbox value="#{loginBean.levelEditable2}">
+                                <f:ajax render="@form"/>
+                            </h:selectBooleanCheckbox></i>)    
+                        <h:inputText value="#{loginBean.usuario.domicilio}" size="12" rendered="#{loginBean.levelEditable2}"/>
+                        <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable2}">
+                            <f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
+                        <h:outputText value="#{loginBean.usuario.domicilio}" 
+                                      rendered="#{!loginBean.levelEditable2}"/>
+                        
+                        
+                        </td>
                 </tr>
                 <tr>
                     <td><b>Número de cuenta corriente</b></td>
@@ -58,6 +100,7 @@
                     <td>#{loginBean.usuario.saldo}</td>
                 </tr>
             </table>
+                </h:form>
         </ul>
     </h:body>
 </html>

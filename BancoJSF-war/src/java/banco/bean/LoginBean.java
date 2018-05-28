@@ -26,6 +26,42 @@ public class LoginBean implements Serializable{
     private UsuarioFacade usuarioFacade;
     
     protected Usuario usuario;
+    private boolean levelEditable;
+    private boolean levelEditable1;
+    private boolean levelEditable2;
+    private String message = "";
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isLevelEditable1() {
+        return levelEditable1;
+    }
+
+    public void setLevelEditable1(boolean levelEditable1) {
+        this.levelEditable1 = levelEditable1;
+    }
+
+    public boolean isLevelEditable2() {
+        return levelEditable2;
+    }
+
+    public void setLevelEditable2(boolean levelEditable2) {
+        this.levelEditable2 = levelEditable2;
+    }
+
+    public boolean isLevelEditable() {
+        return levelEditable;
+    }
+
+    public void setLevelEditable(boolean levelEditable) {
+        this.levelEditable = levelEditable;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -45,6 +81,7 @@ public class LoginBean implements Serializable{
     @PostConstruct
     public void init(){
        usuario = new Usuario();
+       
     }
     
     public String doLogin(){
@@ -54,19 +91,31 @@ public class LoginBean implements Serializable{
         if(logueado != null){
             usuario = logueado;
         }else{
-            //Lanzar error
+            message="Usuario o contraseña incorrecta";
+            return (null);
         }
         
         if(usuario.getEmpleado() == 1){
             return "empleado_Usuario";
         }else{
-            return "usuario_DatosPersonales";
+            return "usuario_Movimientos";
+            
         }
     }
     
     public String borrarSesion(ComponentSystemEvent event){
         usuario = new Usuario();
+        levelEditable = false;
+        
         return "login";
+    }
+    
+    public String doEdit(){
+        levelEditable = false;
+        levelEditable1 = false;
+        levelEditable2 = false;
+        this.usuarioFacade.edit(this.usuario);
+        return null;
     }
     
 }

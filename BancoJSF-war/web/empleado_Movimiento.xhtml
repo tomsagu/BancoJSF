@@ -15,7 +15,9 @@
     </h:head>
     <h:body>
         <ul1 class="ul1">
-            <h:link id="a" class="notActive" outcome="empleado_Usuario" value="Usuarios"/>
+            <h:form>
+                <h:commandLink id="a" class="notActive" value="Usuarios" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
+            </h:form>
         </ul1>
         <ul id="enunciado" class="ul">
             <h3>Lista de Movimientos</h3>
@@ -80,7 +82,7 @@
                     </h:column>  
                 </h:dataTable>
                 <h:button outcome="empleado_nuevoeditarMovimiento" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/> 
-                </h:form>
+            </h:form>
         </ul>         
     </h:body>
 </html>

@@ -84,5 +84,12 @@ public class UsuarioCrearBean {
         return "empleado_Usuario";
     }
     
+    public String doCancelar(){
+        this.empleadoBean.setUsuarioSeleccionado(null);
+        this.empleadoBean.init();
+        
+        return "empleado_Usuario";
+    }
+    
 
 }

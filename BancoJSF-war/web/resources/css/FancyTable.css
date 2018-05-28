@@ -148,3 +148,24 @@
     width: 100%;
     position: static;
 }
+
+.a{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #33cc00;
+}
+
+
+.a:hover {
+    background-color: grey;
+}
+
+.a.notActive{
+       background-color: black;
+}
+.a.active {
+    background-color:#33cc00;
+}

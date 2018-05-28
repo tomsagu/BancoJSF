@@ -12,6 +12,9 @@ import banco.entity.Usuario;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.annotation.PostConstruct;
@@ -71,7 +74,15 @@ public class EmpleadoCrearMovimientoBean {
     public void init () {
         if (this.empleadoBean.getIdMovimientoSeleccionado() != -1) { // Editar
             this.movimiento = this.movimientoFacade.find(this.empleadoBean.getIdMovimientoSeleccionado());
-            this.fecha = this.movimiento.getFecha().toString();
+            
+             Date date= this.movimiento.getFecha();
+            
+             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+             int year  = localDate.getYear();
+             int month = localDate.getMonthValue();
+             int day   = localDate.getDayOfMonth();
+            
+             this.fecha = year+"-"+month+"-"+day;
             
         } else { // Nuevo Movimiento
             movimiento = new Movimiento();
@@ -84,8 +95,8 @@ public class EmpleadoCrearMovimientoBean {
             
         if (movimiento.getIdMovimiento() == null) {
             
-            String fechaAMD = fecha.substring(0, 9);
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            String fechaAMD = fecha.substring(0, 10);
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date date = null;
             try {
                 date = format.parse(fechaAMD);

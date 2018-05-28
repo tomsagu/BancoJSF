@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 @Named(value = "usuarioCrearBean")
 @RequestScoped
-public class usuarioCrearBean {
+public class UsuarioCrearBean {
 
     @Inject 
     private EmpleadoBean empleadoBean;
@@ -34,7 +34,7 @@ public class usuarioCrearBean {
     /**
      * Creates a new instance of usuarioCrearBean
      */
-    public usuarioCrearBean() {
+    public UsuarioCrearBean() {
     }
     
     public Usuario getUsuario() {
@@ -78,6 +78,13 @@ public class usuarioCrearBean {
         } else {  
             this.usuarioFacade.create(usuario);
         }
+        this.empleadoBean.setUsuarioSeleccionado(null);
+        this.empleadoBean.init();
+        
+        return "empleado_Usuario";
+    }
+    
+    public String doCancelar(){
         this.empleadoBean.setUsuarioSeleccionado(null);
         this.empleadoBean.init();
         

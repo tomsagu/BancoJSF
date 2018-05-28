@@ -6,48 +6,55 @@
     <h:outputStylesheet library="css" name="FancyTable.css"/>
     <h:head>
         <title>Movimientos</title>
-        
+
     </h:head>
     <h:body>
         <ul1>
-            <h:link class="active" outcome="usuario_Movimientos" value="Movimientos"/>
-            <h:link  class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
-            <h:link  class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
-            <a href="login.xhtml">Salir</a>
-            
+            <h:link class="a" outcome="usuario_Movimientos" value="Movimientos"/>
+            <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
+            <h:link class="a"  outcome="usuario_Transferencia" value="Transferencias"/>
         </ul1>
-        <h:panelGrid id = "panel" columns = "1" cellspacing = "1" width="100%"> 
-
-            <ul>
-                <h:dataTable id="customers" value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" class="table table-striped" border="1" style="width:60%">
-                    <h:column>
-                        <f:facet name="header">
-                            Fecha
-                        </f:facet>
-                        #{movimientos.fecha}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Entidad
-                        </f:facet>
-                        #{movimientos.entidad}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Concepto
-                        </f:facet>
-                        #{movimientos.concepto}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Cantidad
-                        </f:facet>
-                        #{movimientos.cantidad}
-                    </h:column>
-                </h:dataTable>
-            </ul>
-        </h:panelGrid>
         
+        <table id="customers">
+            <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
+
+                <td>Saldo: #{loginBean.usuario.saldo}</td>
+                <td>
+                    <h:form>
+                        <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+                    </h:form>
+                </td></tr>
+        </table>
+
+        <h:dataTable id="customers" value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" class="table table-striped">
+            <h:column>
+                <f:facet name="header">
+                    Fecha
+                </f:facet>
+                #{movimientos.fecha}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Entidad
+                </f:facet>
+                #{movimientos.entidad}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Concepto
+                </f:facet>
+                #{movimientos.concepto}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Cantidad
+                </f:facet>
+                #{movimientos.cantidad}
+            </h:column>
+        </h:dataTable>
+
+
+
     </h:body>
 </html>
 

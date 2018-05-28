@@ -36,49 +36,18 @@
     padding-top: 8em;
 }
 
-
-
 #enunciado {
     font-family: Helvetica;
     border-collapse: initial;
     width: 100%;
 }
 
-.ul{
+body{
     list-style-type: none;
     padding-left:10em;
     padding-right:10em;
     margin: 0;
     position: static;
-}
-
-.ul1 {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-#a{
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    background-color: #33cc00;
-}
-
-
-#a:hover {
-    background-color: grey;
-}
-
-#a.notActive{
-       background-color: black;
-}
-#a.active {
-    background-color:#33cc00;
 }
 
 .button {
@@ -126,6 +95,24 @@
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+.button2 {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #999;
+}
+
+.button2:hover {background-color: red}
+
 .td, .th {
     border: 1px solid #ddd;
     padding: 8px;

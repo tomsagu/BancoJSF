@@ -103,10 +103,10 @@ public class LoginBean implements Serializable{
         }
     }
     
-    public String borrarSesion(ComponentSystemEvent event){
+    public String borrarSesion(){
         usuario = new Usuario();
         levelEditable = false;
-        
+        message="";
         return "login";
     }
     

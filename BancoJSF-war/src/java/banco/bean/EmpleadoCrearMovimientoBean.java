@@ -133,5 +133,12 @@ public class EmpleadoCrearMovimientoBean {
         this.empleadoBean.setUsuarioSeleccionado(seleccionado);
         return "empleado_Movimiento";
     }
+    
+    public String doCancelar(){
+        Usuario seleccionado = this.empleadoBean.getUsuarioSeleccionado();
+        this.empleadoBean.init();
+        this.empleadoBean.setUsuarioSeleccionado(seleccionado);
+        return "empleado_Movimiento";
+    }
    
 }

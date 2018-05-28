@@ -12,6 +12,7 @@ import banco.entity.Usuario;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -33,11 +34,12 @@ public class TransferenciaBean {
     @Inject
     private LoginBean login;       
     
-    
+    // variables
     Usuario usuario;
     Movimiento movimiento;
     String cantidad;
     double cantidadDouble;
+    private String message = "";
 
     public Usuario getUsuario() {
         return usuario;
@@ -62,8 +64,16 @@ public class TransferenciaBean {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
-    
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    
     
     /**
      * Creates a new instance of TransferenciaBean
@@ -73,35 +83,50 @@ public class TransferenciaBean {
     
     public String doTransferencia() {
         usuario = login.usuario;
-        String entidad = movimiento.getEntidad();
-        Usuario ben = this.usuarioFacade.findByDni(entidad);
-        //rellenar todos los campos de movimiento
         cantidadDouble = Double.parseDouble(cantidad);
-        // mirar si tiene saldo suficiente
-        movimiento.setCantidad(cantidadDouble); //cantidad
-        movimiento.setUsuarioidUsuario(usuario); //usuario
-        movimiento.setUsuarioidUsuario1(usuario); //supervisor
-        movimiento.setFecha(new Date()); //fecha
-        movimiento.setTipo("transferencia"); //tipo
-        
-        //crear movimiento
-        this.movimientoFacade.create(movimiento);
-        
-        //modificar slado usuarios
-        usuario.setSaldo(usuario.getSaldo() - cantidadDouble);
-        ben.setSaldo(ben.getSaldo() + cantidadDouble);
-        
-        //editar usuarios
-        this.usuarioFacade.edit(usuario);
-        this.usuarioFacade.edit(ben);
-        
-        return "usuario_Movimientos";
+        Usuario busqueda = this.usuarioFacade.findByDni(movimiento.getEntidad());
+        Double saldoUsuario = usuario.getSaldo();
+       
+        if((busqueda == null || busqueda.equals(usuario)) && (cantidadDouble > saldoUsuario) || (cantidadDouble < 0)){ // mirar si existe el beneficiario
+            message = "Usuario y cantidad incorrecto";
+            return(null);
+        } else if (busqueda.equals(usuario)) {
+            message = "No se puede mandar al mismo usuario";
+            return(null);
+        }else if(busqueda == null) {
+            message = "Usuario desconocido";
+            return(null);
+        }else if ((cantidadDouble > saldoUsuario) || (cantidadDouble < 0)) {
+            message = "Cantidad incorrecto";
+            return(null);
+        } else {
+            String entidad = movimiento.getEntidad();
+            Usuario ben = this.usuarioFacade.findByDni(entidad);
+            //rellenar todos los campos de movimiento
+            movimiento.setCantidad(cantidadDouble); //cantidad
+            movimiento.setUsuarioidUsuario(usuario); //usuario
+            movimiento.setUsuarioidUsuario1(usuario); //supervisor
+            movimiento.setFecha(new Date()); //fecha
+            movimiento.setTipo("transferencia"); //tipo
+
+            //crear movimiento
+            this.movimientoFacade.create(movimiento);
+
+            //modificar slado usuarios
+            usuario.setSaldo(usuario.getSaldo() - cantidadDouble);
+            ben.setSaldo(ben.getSaldo() + cantidadDouble);
+
+            //editar usuarios
+            this.usuarioFacade.edit(usuario);
+            this.usuarioFacade.edit(ben);
+            return "usuario_Movimientos";
+        }
     }
     
     @PostConstruct
     public void init (){
         movimiento = new Movimiento();
-        cantidad = "";
+        //cantidad = "";
     }
     
 }

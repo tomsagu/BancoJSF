@@ -92,6 +92,7 @@ public class EmpleadoBean implements Serializable{
        usuario = this.loginBean.getUsuario();
        //Crea la lista solo con los usuarios (clientes del banco), no empleados
        this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0);
+       this.usuarioSeleccionado = null;
       
     }
     public String doEditar(Integer id){

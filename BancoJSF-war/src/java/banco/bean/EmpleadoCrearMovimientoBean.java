@@ -117,7 +117,7 @@ public class EmpleadoCrearMovimientoBean {
             
         this.empleadoBean.setIdMovimientoSeleccionado(-1);
         this.empleadoBean.setListaMovimientos(this.movimientoFacade.buscarPorIdUsuario(this.empleadoBean.getUsuarioSeleccionado().getIdUsuario()));
-        
+        this.empleadoBean.init();
         return "empleado_Movimiento";
     }
    

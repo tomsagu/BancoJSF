@@ -15,15 +15,23 @@
             <table id="customers">
                 <tr>
                     <td>Concepto:</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.concepto}"/></td>
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.concepto}">
+                        <f:validateLength minimum="1" maximum="15"/>    
+                        </h:inputText>
+                    </td>
                </tr>
                 <tr>
                     <td>Fecha:</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.fecha}"/></td>     
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.fecha}">
+                    <f:validateLength minimum="1" maximum="10"/>    
+                        </h:inputText>
+                    </td>     
                 </tr>
                 <tr>
-                    <td>Cantidad:</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.cantidad}"/>
+                    <td>Cantidad MAXIMO 1000000:</td>
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.cantidad}">
+                            <f:validateDoubleRange minimum="1" maximum="1000000"/>    
+                        </h:inputText>
                     </td>                    
                 </tr>
                 <tr>
@@ -43,7 +51,10 @@
                 </tr>
                 <tr>
                     <td>Entidad(en caso de transferencia escribir DNI):</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.entidad}"/></td>                    
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.entidad}">
+                    <f:validateLength minimum="1" maximum="15"/>    
+                        </h:inputText>
+                    </td>                    
                 </tr>
                 <tr>
                     <td>DNI Usuario Receptor(no editable):</td>

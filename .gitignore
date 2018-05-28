@@ -3,3 +3,5 @@
 /build/
 /BancoJSF-war/dist/
 /BancoJSF-ejb/dist/
+/nbproject/private/
+/BancoJSF-war/nbproject/private/

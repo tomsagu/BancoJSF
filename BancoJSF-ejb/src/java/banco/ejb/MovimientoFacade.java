@@ -36,7 +36,7 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> {
         return q.getResultList();
     }
     
-    public List<Movimiento> BuscarMovimientoPorDni(String dni){
+    public List<Movimiento> buscarMovimientoPorDni(String dni){
         Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.fecha asc");
         q.setParameter("id", dni);
         
@@ -44,6 +44,42 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> {
         
         return lista;
         
+    }
+    
+    public List<Movimiento> buscarPorDNIFechaDescendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.fecha desc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+     
+    public List<Movimiento> buscarPorDNIFechaAscendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.fecha asc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Movimiento> buscarPorDNICantidadDescendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.cantidad desc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Movimiento> buscarPorDNICantidadAscendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.cantidad asc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
     }
     
 }

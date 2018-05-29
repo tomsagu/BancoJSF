@@ -10,7 +10,10 @@ import banco.ejb.UsuarioFacade;
 import banco.entity.Movimiento;
 import banco.entity.Usuario;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -34,6 +37,42 @@ public class EmpleadoBean implements Serializable{
     @EJB
     private MovimientoFacade movimientoFacade;
 
+    private String ordenActual;
+    private Map<String, List<Movimiento>> movimientosMap  = new HashMap<>();;
+    private List<String> opcionesOrden;
+    
+
+    public Map<String, List<Movimiento>> getMovimientosMap() {
+        return movimientosMap;
+    }
+
+    public void setMovimientosMap(Map<String, List<Movimiento>> movimientosMap) {
+        this.movimientosMap = movimientosMap;
+    }
+
+    public String getOrdenActual() {
+        return ordenActual;
+    }
+
+    public void setOrdenActual(String ordenActual) {
+        this.ordenActual = ordenActual;
+    }
+
+    public List<String> getOpcionesOrden() {
+        return opcionesOrden;
+    }
+
+    public void setOpcionesOrden(List<String> opcionesOrden) {
+        this.opcionesOrden = opcionesOrden;
+    }
+
+    public List<Movimiento> getListaMovimientosOrden() {
+        return (movimientosMap.get(ordenActual));
+    }
+    
+    
+    
+    
     protected Usuario usuario;
     protected List<Usuario> listaUsuarios;
     protected List<Movimiento> listaMovimientos;
@@ -85,6 +124,12 @@ public class EmpleadoBean implements Serializable{
      * Creates a new instance of EmpleadoBean
      */
     public EmpleadoBean() {
+        opcionesOrden = new ArrayList<>();
+        opcionesOrden.add("Fecha descendente");
+        opcionesOrden.add("Fecha ascendente");
+        opcionesOrden.add("Cantidad descendente");
+        opcionesOrden.add("Cantidad ascendente");
+        ordenActual = "Fecha descendente";
     }
     
     @PostConstruct
@@ -93,6 +138,15 @@ public class EmpleadoBean implements Serializable{
        //Crea la lista solo con los usuarios (clientes del banco), no empleados
        this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0);
        //this.usuarioSeleccionado = null;  
+       
+        this.movimientosMap.put("Fecha descendente", this.movimientoFacade.buscarPorDNIFechaDescendente(usuario.getDni()));
+        this.movimientosMap.put("Fecha ascendente", this.movimientoFacade.buscarPorDNIFechaAscendente(usuario.getDni()));
+        this.movimientosMap.put("Cantidad descendente", this.movimientoFacade.buscarPorDNICantidadDescendente(usuario.getDni()));
+        this.movimientosMap.put("Cantidad ascendente", this.movimientoFacade.buscarPorDNICantidadAscendente(usuario.getDni()));
+       
+       
+       
+       
     }
     public String doEditar(Integer id){
         if (id != null) { // Caso de uso editar

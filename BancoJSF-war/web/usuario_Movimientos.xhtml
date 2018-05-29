@@ -14,8 +14,8 @@
             <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
             <h:link class="a"  outcome="usuario_Transferencia" value="Transferencias"/>
         </ul1>
-        
-        <table id="customers">
+
+        <table class="customers">
             <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
 
                 <td>Saldo: #{loginBean.usuario.saldo}</td>
@@ -23,10 +23,18 @@
                     <h:form>
                         <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                     </h:form>
+                    
                 </td></tr>
+            <tr><td><h:form><div align="center"><b>Ordenar por:</b>
+                            <h:selectOneMenu value="#{empleadoBean.ordenActual}">
+                            <f:selectItems value="#{empleadoBean.opcionesOrden}"/>
+                            <f:ajax render="ordenTable"/>
+                        </h:selectOneMenu>
+                    </div></h:form></td></tr>
+            
         </table>
 
-        <h:dataTable id="customers" value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" class="table table-striped">
+        <h:dataTable id="ordenTable" class="customers" value="#{empleadoBean.listaMovimientosOrden}" var="movimientos" >
             <h:column>
                 <f:facet name="header">
                     Fecha

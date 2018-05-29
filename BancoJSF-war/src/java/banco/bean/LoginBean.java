@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.event.ComponentSystemEvent;
 
 /**
  *
@@ -98,7 +97,7 @@ public class LoginBean implements Serializable{
         if(usuario.getEmpleado() == 1){
             return "empleado_Usuario";
         }else{
-            return "usuario_Movimientos";
+            return "usuario_DatosPersonales";
             
         }
     }

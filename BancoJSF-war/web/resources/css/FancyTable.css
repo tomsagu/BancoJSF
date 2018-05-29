@@ -1,5 +1,6 @@
 
-#customers {
+
+.customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -13,16 +14,19 @@
     position: absolute;
 }
 
-#customers td, #customers th {
+.customers td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+.customers tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
+.customers tr:nth-child(odd){background-color:lightgrey;}
 
-#customers th {
+
+.customers tr:hover {background-color: #ddd;}
+
+.customers th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -48,6 +52,7 @@ body{
     padding-right:10em;
     margin: 0;
     position: static;
+    background-image: url("http://gifimage.net/wp-content/uploads/2017/11/gif-dinero-cayendo-9.gif");
 }
 
 .button {

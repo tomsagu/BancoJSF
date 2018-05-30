@@ -65,4 +65,14 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             return lista;
         }
     }
+    
+    public List<Integer> findAllCuentas() {
+        Query q = this.em.createQuery("select u.cuenta from Usuario u");
+        List<Integer> lista = q.getResultList();
+        if (lista == null || lista.size() == 0) {
+            return null;
+        } else {
+            return lista;
+        }
+    }
 }

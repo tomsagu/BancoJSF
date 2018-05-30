@@ -15,7 +15,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <table id ="enunciado">
             <td> <h2>Hola #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos}</h2> </td>
-            <td><h:link outcome="login"  value="Salir"/></td>
+            <td><h:form>
+                  <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+                </h:form></td>
         </table>
     </h:head>
     <h:body>

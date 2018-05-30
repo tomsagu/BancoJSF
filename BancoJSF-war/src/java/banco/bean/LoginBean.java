@@ -81,6 +81,7 @@ public class LoginBean implements Serializable{
     public void init(){
        usuario = new Usuario();
        
+       
     }
     
     public String doLogin(){
@@ -91,13 +92,13 @@ public class LoginBean implements Serializable{
             usuario = logueado;
         }else{
             message="Usuario o contraseña incorrecta";
-            return (null);
+            return "";
         }
         
         if(usuario.getEmpleado() == 1){
             return "empleado_Usuario";
         }else{
-            return "usuario_DatosPersonales";
+            return "usuario_Movimientos";
             
         }
     }

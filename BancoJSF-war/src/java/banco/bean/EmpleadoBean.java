@@ -17,8 +17,6 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
@@ -69,9 +67,6 @@ public class EmpleadoBean implements Serializable{
     public List<Movimiento> getListaMovimientosOrden() {
         return (movimientosMap.get(ordenActual));
     }
-    
-    
-    
     
     protected Usuario usuario;
     protected List<Usuario> listaUsuarios;
@@ -148,6 +143,7 @@ public class EmpleadoBean implements Serializable{
        
        
     }
+    
     public String doEditar(Integer id){
         if (id != null) { // Caso de uso editar
             usuarioSeleccionado = this.usuarioFacade.find(id);

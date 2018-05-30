@@ -8,6 +8,11 @@
     <h:head>
         <title>Lista de Movimientos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <ul1>
+            <h:form>
+                <h:commandLink id="a" class="notActive" value="Usuarios" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
+            </h:form>
+        </ul1>
         <table id ="enunciado">
             <td> <h2>Lista de Movimientos de #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2> </td>
             <td><h:form>
@@ -16,14 +21,7 @@
         </table>
     </h:head>
     <h:body>
-        <ul1 class="ul1">
-            <h:form>
-                <h:commandLink id="a" class="notActive" value="Usuarios" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
-            </h:form>
-        </ul1>
-        <ul id="enunciado" class="ul">
-            <h3>Lista de Movimientos</h3>
-        </ul>
+
         <ul class="ul">
             <h:form>
                 <h:dataTable value="#{empleadoBean.listaMovimientos}" var="listaMovimientos" styleClass="customers" headerClass="th"

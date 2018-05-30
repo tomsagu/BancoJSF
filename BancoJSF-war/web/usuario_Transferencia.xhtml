@@ -13,7 +13,7 @@
             <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
             <h:link class="a"  outcome="usuario_Transferencia" value="Transferencias"/>
  
-        <h:form>
+       
             <table class="customers">
                 <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
 
@@ -22,7 +22,10 @@
                     <h:form>
                         <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                     </h:form>
+                    
+                    
                 </td></tr>
+             <h:form>
                 <tr>
                     <td>BENEFICIARIO:</td>
                     <td><h:inputText value="#{transferenciaBean.movimiento.entidad}"></h:inputText></td>
@@ -35,19 +38,24 @@
                     <td>CANTIDAD:</td>
                     <td><h:inputText value="#{transferenciaBean.cantidad}"></h:inputText></td>
                 </tr>
+                  </h:form>
             </table>
             <table id="customers">
                 <td>
+                    <h:form>
+                        
                     <h:commandButton class="button" value="Enviar" action="#{transferenciaBean.doTransferencia()}">
                         <f:ajax execute="@form" render="error"/>
                     </h:commandButton>
+                    </h:form>
                     
                 </td>
                 <td>
                     <h:outputText value="#{transferenciaBean.message}" id="error"/>
                 </td>
+               
             </table>
-        </h:form>
+        
 
     </h:body>
 </html>

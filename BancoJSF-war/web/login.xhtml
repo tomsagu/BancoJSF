@@ -20,8 +20,8 @@ and open the template in the editor.
         
 
     </h:head>
-    <h:body class="bg-light">
-        
+    <h:body class="bg-light" >
+       
         <div id="login">
             <center> <h1>Inicio de Sesión</h1></center> <br></br>
          
@@ -43,9 +43,9 @@ and open the template in the editor.
 
                 </table>
                 <h:commandButton  class="btn btn-lg btn-primary btn-block" value = "Enviar" action="#{loginBean.doLogin()}">
-                 <f:ajax execute="@form" render="error"/></h:commandButton>
+                </h:commandButton>
                  <br/>
-                 <center><h2><h:outputText value="#{loginBean.message}" id="error"/></h2></center>
+                 <center><h2><h:outputText value="#{loginBean.message}"/></h2></center>
             </h:form>
         </div>
     </h:body>

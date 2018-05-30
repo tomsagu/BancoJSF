@@ -7,6 +7,8 @@ package banco.bean;
 
 import banco.ejb.UsuarioFacade;
 import banco.entity.Usuario;
+import java.util.List;
+import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -96,6 +98,20 @@ public class UsuarioCrearBean {
                 this.usuarioFacade.edit(usuario);
             } else {  
                 usuario.setSaldo(0.0);
+                
+                // Generacion de numero de cuenta aleatorio de 8 digitos
+                Random rnd = new Random();
+                boolean valido = false;
+                List<Integer> cuentas = this.usuarioFacade.findAllCuentas();
+                int numero;
+                while(!valido) {
+                    numero = 10000000 + rnd.nextInt(90000000);
+                    if (!cuentas.contains(numero)) {
+                        valido = true;
+                        usuario.setCuenta(numero);
+                    }
+                }
+                
                 this.usuarioFacade.create(usuario);
             }
             this.empleadoBean.setUsuarioSeleccionado(null);

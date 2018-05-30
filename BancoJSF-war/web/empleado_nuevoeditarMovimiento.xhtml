@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-        <h:outputStylesheet library="css" name="FancyTable.css"/>
-        
-        <h:head>
+
+    <h:outputStylesheet library="css" name="FancyTable.css"/>
+
+    <h:head>
         <title>Crear/EditarMovimiento</title>
     </h:head>
     <h:body>
@@ -16,43 +16,57 @@
                 <tr>
                     <td>Concepto:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.concepto}">
-                        <f:validateLength minimum="1" maximum="15"/>    
+                            <f:validateLength minimum="1" maximum="15"/>    
                         </h:inputText>
                     </td>
-               </tr>
+                </tr>
                 <tr>
                     <td>Fecha:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.fecha}">
-                    <f:validateLength minimum="1" maximum="10"/>    
+                            <f:validateLength minimum="1" maximum="10"/>    
                         </h:inputText>
                     </td>     
                 </tr>
                 <tr>
                     <td>Cantidad MAXIMO 1000000:</td>
-                    <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.cantidad}">
+                    <td><h:inputText value="#{empleadoCrearMovimientoBean.cantidad}"><br/>
                             <f:validateDoubleRange minimum="1" maximum="1000000"/>    
+                            <f:ajax event="keyup" render="mField"/>
                         </h:inputText>
-                    </td>                    
+                    </td>   
+                    <tr>
+                        <td>
+                            Saldo Actual:
+                            <h:outputText value="#{empleadoCrearMovimientoBean.saldocliente}"/>
+                        </td>
+                        <td>
+
+                            <h1>
+                                Dinero restante: 
+                                <h:outputText value="#{empleadoCrearMovimientoBean.cRest}" id="mField"/>
+                            </h1>  
+                        </td>
+                    </tr>
                 </tr>
                 <tr>
                     <td>Tipo de Movimiento:</td>
                     <td><h:selectOneMenu value="#{empleadoCrearMovimientoBean.movimiento.tipo}" >
-                                <f:selectItem  itemValue="ingreso" 
-                                               itemLabel="Ingreso"          
-                                               />
-                                 <f:selectItem  itemValue="debito" 
-                                               itemLabel="Debito"          
-                                               />
-                                  <f:selectItem  itemValue="transferencia" 
-                                               itemLabel="Transferencia"          
-                                               />
-                                               
+                            <f:selectItem  itemValue="ingreso" 
+                                           itemLabel="Ingreso"          
+                                           />
+                            <f:selectItem  itemValue="debito" 
+                                           itemLabel="Debito"          
+                                           />
+                            <f:selectItem  itemValue="transferencia" 
+                                           itemLabel="Transferencia"          
+                                           />
+
                         </h:selectOneMenu> </td>                   
                 </tr>
                 <tr>
                     <td>Entidad(en caso de transferencia escribir DNI):</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.entidad}">
-                    <f:validateLength minimum="1" maximum="15"/>    
+                            <f:validateLength minimum="1" maximum="15"/>    
                         </h:inputText>
                     </td>                    
                 </tr>
@@ -60,13 +74,13 @@
                     <td>DNI Usuario Receptor(no editable):</td>
                     <td><h:inputText readonly="true" value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario.dni}"/> #{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario.nombre} </td>                    
                 </tr> 
-                 <tr>
+                <tr>
                     <td>DNI Empleado Supervisor(no editable):</td>
                     <td><h:inputText readonly="true"  value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario1.dni}"/> #{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario1.nombre}</td>                    
                 </tr>               
             </table>
             <h:commandButton action="#{empleadoCrearMovimientoBean.doGuardar()}" value="Enviar" />
-            
+            <center><h2><h:outputText value="#{empleadoCrearMovimientoBean.message}"/></h2></center>
         </h:form>
     </h:body>
 </html>

@@ -8,103 +8,92 @@
 
     <h:head>
         <title>Datos Personales</title>
-        
-       
+
+
 
     </h:head>
-    
+
     <h:body>
         <h:link class="a"  outcome="usuario_Movimientos" value="Movimientos"/>
         <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
         <h:link class="a"  outcome="usuario_Transferencia" value="Transferencias"/>
 
-            <table class="customers">
-                <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
-                    <td>
-                        <h:form>
-                            <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
-                        </h:form>
-                        
-                  
-                    </td></tr>
+
+        <table id ="enunciado" >
+            <td > <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
+            <td><h:form>
+                    <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+                </h:form></td>
+        </table>
 
 
-                <h:form>   
-                    <th>Datos Personales</th>
-                    <th></th>
-
-
-                    <tr>
-                        <td><b>Nombre</b></td>
-                        <td>#{loginBean.usuario.nombre}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Apellidos</b></td>
-                        <td>#{loginBean.usuario.apellidos}</td>
-                    </tr>
-                    <tr>
-                        <td><b>DNI</b></td>
-                        <td>#{loginBean.usuario.dni}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Teléfono</b></td>
-                        <td>(<i>Editar?
-                                <h:selectBooleanCheckbox value="#{loginBean.levelEditable}">
-                                    <f:ajax render="@form"/>
-                                </h:selectBooleanCheckbox></i>)    
-                            <h:inputText value="#{loginBean.usuario.telefono}" size="12" rendered="#{loginBean.levelEditable}"/>
-                            <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable}">
-                                <f:ajax render="@form" execute="@form"/>
-                            </h:commandButton>
-                            <h:outputText value="#{loginBean.usuario.telefono}" 
-                                          rendered="#{!loginBean.levelEditable}"/>
-
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Email</b></td>
-                        <td>(<i>Editar?
-                                <h:selectBooleanCheckbox value="#{loginBean.levelEditable1}">
-                                    <f:ajax render="@form"/>
-                                </h:selectBooleanCheckbox></i>)    
-                            <h:inputText value="#{loginBean.usuario.email}" size="12" rendered="#{loginBean.levelEditable1}"/>
-                            <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable1}">
-                                <f:ajax render="@form" execute="@form"/>
-                            </h:commandButton>
-                            <h:outputText value="#{loginBean.usuario.email}" 
-                                          rendered="#{!loginBean.levelEditable1}"/>
-
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Domicilio</b></td>
-                        <td>(<i>Editar?
-                                <h:selectBooleanCheckbox value="#{loginBean.levelEditable2}">
-                                    <f:ajax render="@form"/>
-                                </h:selectBooleanCheckbox></i>)    
-                            <h:inputText value="#{loginBean.usuario.domicilio}" size="12" rendered="#{loginBean.levelEditable2}"/>
-                            <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable2}">
-                                <f:ajax render="@form" execute="@form"/>
-                            </h:commandButton>
-                            <h:outputText value="#{loginBean.usuario.domicilio}" 
-                                          rendered="#{!loginBean.levelEditable2}"/>
-
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Número de cuenta corriente</b></td>
-                        <td>#{loginBean.usuario.cuenta} </td>
-                    </tr>
-                    <tr>
-                        <td><b>Saldo</b></td>
-                        <td>#{loginBean.usuario.saldo}</td>
-                    </tr>
-                </h:form>
-            </table>
-
+        <h:form>
+            <h:dataTable var="usuario" 
+                         value="#{loginBean.usuario}"
+                         class="customers">
+                <f:facet name="caption"><h2>Datos Personales</h2></f:facet>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                        #{usuario.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Apellidos</f:facet>
+                        #{usuario.apellidos}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DNI</f:facet>
+                        #{usuario.dni}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Télofono</f:facet>
+                    (<i>Editar?
+                        <h:selectBooleanCheckbox value="#{loginBean.levelEditable}">
+                            <f:ajax render="@form"/>
+                        </h:selectBooleanCheckbox></i>)    
+                    <h:inputText value="#{usuario.telefono}" size="12" rendered="#{loginBean.levelEditable}"/>
+                    <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable}">
+                        <f:ajax render="@form" execute="@form"/>
+                    </h:commandButton>
+                    <h:outputText value="#{usuario.telefono}" 
+                                  rendered="#{!loginBean.levelEditable}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    (<i>Editar?
+                        <h:selectBooleanCheckbox value="#{loginBean.levelEditable1}">
+                            <f:ajax render="@form"/>
+                        </h:selectBooleanCheckbox></i>)    
+                    <h:inputText value="#{usuario.email}" size="12" rendered="#{loginBean.levelEditable1}"/>
+                    <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable1}">
+                        <f:ajax render="@form" execute="@form"/>
+                    </h:commandButton>
+                    <h:outputText value="#{usuario.email}" 
+                                  rendered="#{!loginBean.levelEditable1}"/>  
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Domicilio</f:facet>
+                    (<i>Editar?
+                        <h:selectBooleanCheckbox value="#{loginBean.levelEditable2}">
+                            <f:ajax render="@form"/>
+                        </h:selectBooleanCheckbox></i>)    
+                    <h:inputText value="#{usuario.domicilio}" size="12" rendered="#{loginBean.levelEditable2}"/>
+                    <h:commandButton value="Update" action="#{loginBean.doEdit()}" rendered="#{loginBean.levelEditable2}">
+                        <f:ajax render="@form" execute="@form"/>
+                    </h:commandButton>
+                    <h:outputText value="#{usuario.domicilio}" 
+                                  rendered="#{!loginBean.levelEditable2}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Número de Cuenta</f:facet>
+                        #{usuario.cuenta}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Saldo</f:facet>
+                        #{usuario.saldo} €
+                       
+                </h:column>
+            </h:dataTable>
+        </h:form>
     </h:body>
 </html>
 

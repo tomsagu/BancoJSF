@@ -18,7 +18,7 @@
         <table class="customers">
             <tr><td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
 
-                <td>Saldo: #{loginBean.usuario.saldo}</td>
+                <td>Saldo: #{loginBean.usuario.saldo}€</td>
                 <td>
                     <h:form>
                         <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
@@ -57,7 +57,7 @@
                 <f:facet name="header">
                     Cantidad
                 </f:facet>
-                #{movimientos.cantidad}
+                #{movimientos.cantidad}€
             </h:column>
         </h:dataTable>
 

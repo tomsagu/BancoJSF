@@ -42,9 +42,7 @@ public class EmpleadoCrearMovimientoBean {
     
    protected Movimiento movimiento;
    protected String fecha;
-   protected String cantidad;
    private String message;
-   private String cRest;
    private String saldocliente;
    
     public String getFecha() {
@@ -53,22 +51,6 @@ public class EmpleadoCrearMovimientoBean {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
-    }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-        Usuario x = movimiento.getUsuarioidUsuario();
-        double restante=x.getSaldo()- Double.parseDouble(cantidad);
-        cRest= String.valueOf(restante);
-        if(restante>0){
-            cRest= cRest+" Movimiento VALIDO";
-        }else{
-            cRest= cRest+" Movimiento INVALIDO";
-        }
     }
 
     public String getMessage() {
@@ -83,11 +65,7 @@ public class EmpleadoCrearMovimientoBean {
         Usuario x = movimiento.getUsuarioidUsuario();
         return String.valueOf(x.getSaldo());
     }
-
-
  
-
-   
     /**
      * Creates a new instance of empleadoCrearMovimientoBean
      */
@@ -102,13 +80,6 @@ public class EmpleadoCrearMovimientoBean {
         this.movimiento = movimiento;
     }
 
-    public String getcRest() {
-        return cRest;
-    }
-
-    public void setcRest(String cRest) {
-        this.cRest = cRest;
-    }
     
     @PostConstruct
     public void init () {
@@ -133,8 +104,12 @@ public class EmpleadoCrearMovimientoBean {
     
     public String doGuardar() {
           Usuario xy = movimiento.getUsuarioidUsuario();
-          double restante=xy.getSaldo()- Double.parseDouble(cantidad); 
-       if(restante>=0){
+          double restante=0;
+          if(movimiento.getTipo().equals("debito") || movimiento.getTipo().equals("transferencia")){
+                 restante=xy.getSaldo()- movimiento.getCantidad(); 
+          }
+       
+            if(restante>=0){
             if (movimiento.getIdMovimiento() == null) {
             
             String fechaAMD = fecha.substring(0, 10);
@@ -146,7 +121,6 @@ public class EmpleadoCrearMovimientoBean {
                // Logger.getLogger(Empleado_CrearMovimientoServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.movimiento.setFecha(date);
-            this.movimiento.setCantidad(Double.parseDouble(cantidad));
             this.movimientoFacade.create(movimiento);
         } else {
             this.movimientoFacade.edit(movimiento);            
@@ -176,7 +150,7 @@ public class EmpleadoCrearMovimientoBean {
         this.empleadoBean.setUsuarioSeleccionado(seleccionado);
         return "empleado_Movimiento";
        }else{
-           this.message="No se ha podido realizar el movimiento" + cRest;
+           this.message="No se ha podido realizar el movimiento tu saldo restante hubiera sido: " + restante;
            return "";
        }
     }
@@ -184,6 +158,7 @@ public class EmpleadoCrearMovimientoBean {
     public String doCancelar(){
         Usuario seleccionado = this.empleadoBean.getUsuarioSeleccionado();
         this.empleadoBean.init();
+        this.empleadoBean.setIdMovimientoSeleccionado(-1);
         this.empleadoBean.setUsuarioSeleccionado(seleccionado);
         return "empleado_Movimiento";
     }

@@ -19,6 +19,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -148,6 +150,10 @@ public class EmpleadoCrearMovimientoBean {
         Usuario seleccionado = this.empleadoBean.getUsuarioSeleccionado();
         this.empleadoBean.init();
         this.empleadoBean.setUsuarioSeleccionado(seleccionado);
+        FacesMessage msg;
+        msg = new FacesMessage("Movimiento Insertado con exito");
+        FacesContext.getCurrentInstance().addMessage(null,msg);
+        
         return "empleado_Movimiento";
        }else{
            this.message="No se ha podido realizar el movimiento tu saldo restante hubiera sido: " + restante;

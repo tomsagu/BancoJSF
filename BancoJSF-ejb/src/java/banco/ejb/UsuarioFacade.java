@@ -55,6 +55,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         }
     }
     
+    //Busca solo los usuarios o solo los empleados
     public List<Usuario> buscarUsuarios(Integer empleado) {
         Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e");
         q.setParameter("e", empleado);
@@ -65,7 +66,76 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             return lista;
         }
     }
+    public List<Usuario> buscarPorDNIDescendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.dni desc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
     
+    public List<Usuario> buscarPorDNIAscendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.dni asc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
+    public List<Usuario> buscarPorCuentaDescendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.cuenta desc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Usuario> buscarPorCuentaAscendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.cuenta asc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Usuario> buscarPorNombreDescendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.nombre desc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Usuario> buscarPorNombreAscendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.nombre asc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Usuario> buscarPorApellidosDescendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.apellidos desc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
+    
+    public List<Usuario> buscarPorApellidosAscendente(Integer empleado){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e order by u.apellidos asc");
+        q.setParameter("e", empleado);
+        
+        List<Usuario> lista = q.getResultList();
+        
+        return lista;
+    }
     public List<Integer> findAllCuentas() {
         Query q = this.em.createQuery("select u.cuenta from Usuario u");
         List<Integer> lista = q.getResultList();

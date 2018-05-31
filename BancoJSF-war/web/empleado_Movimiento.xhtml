@@ -8,25 +8,27 @@
     <h:head>
         <title>Lista de Movimientos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
         <ul1>
             <h:form>
                 <h:commandLink id="a" class="notActive" value="Usuarios" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
             </h:form>
         </ul1>
-        <table id ="enunciado">
+        <table class="customers">
             <td> <h2>Lista de Movimientos de #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2> </td>
             <td><h:form>
                   <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                 </h:form></td>
+            <tr><td><h:form><div align="center"><b>Ordenar por:</b>
+                            <h:selectOneMenu value="#{movimientoBean.ordenActual}">
+                            <f:selectItems value="#{movimientoBean.opcionesOrden}"/>
+                            <f:ajax render="ordenTable"/>
+                        </h:selectOneMenu>
+                    </div></h:form></td></tr>
         </table>
-    </h:head>
-    <h:body>
-
-        <ul class="ul">
-            <h:form>
-                <h:dataTable value="#{empleadoBean.listaMovimientos}" var="listaMovimientos" styleClass="customers" headerClass="th"
-                             rowClasses="td tr" columnClasses="td tr" id = "customers">
-                    <h:column >
+            <h:dataTable id = "ordenTable"  value="#{movimientoBean.listaMovimientosOrden}" var="listaMovimientos" class="customers" >
+                <h:column >
                         <f:facet name="header">
                             Nombre
                         </f:facet>
@@ -56,6 +58,12 @@
                         </f:facet>
                         #{listaMovimientos.tipo}
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Fecha
+                        </f:facet>
+                        #{listaMovimientos.fecha}
+                    </h:column>
                      <h:column>
                         <f:facet name="header">
                             Cantidad
@@ -78,11 +86,12 @@
                         <f:facet name="header">
                             Editar Movimiento
                         </f:facet>
+                        <h:form> 
                         <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditarMovimiento(listaMovimientos.idMovimiento)}"/>
-                    </h:column>  
+                        </h:form> 
+                    </h:column>    
                 </h:dataTable>
-                <h:button outcome="empleado_nuevoeditarMovimiento" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/> 
-            </h:form>
-        </ul>         
+            
+                <h:button outcome="empleado_nuevoeditarMovimiento" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/>        
     </h:body>
 </html>

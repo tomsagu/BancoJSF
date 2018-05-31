@@ -119,28 +119,15 @@ public class EmpleadoBean implements Serializable{
      * Creates a new instance of EmpleadoBean
      */
     public EmpleadoBean() {
-        opcionesOrden = new ArrayList<>();
-        opcionesOrden.add("Fecha descendente");
-        opcionesOrden.add("Fecha ascendente");
-        opcionesOrden.add("Cantidad descendente");
-        opcionesOrden.add("Cantidad ascendente");
-        ordenActual = "Fecha descendente";
+       
     }
     
     @PostConstruct
     public void init(){
        usuario = this.loginBean.getUsuario();
+       //Con ajax no se usa
        //Crea la lista solo con los usuarios (clientes del banco), no empleados
-       this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0);
-       //this.usuarioSeleccionado = null;  
-       
-        this.movimientosMap.put("Fecha descendente", this.movimientoFacade.buscarPorDNIFechaDescendente(usuario.getDni()));
-        this.movimientosMap.put("Fecha ascendente", this.movimientoFacade.buscarPorDNIFechaAscendente(usuario.getDni()));
-        this.movimientosMap.put("Cantidad descendente", this.movimientoFacade.buscarPorDNICantidadDescendente(usuario.getDni()));
-        this.movimientosMap.put("Cantidad ascendente", this.movimientoFacade.buscarPorDNICantidadAscendente(usuario.getDni()));
-       
-       
-       
+       //this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0); 
        
     }
     
@@ -154,7 +141,8 @@ public class EmpleadoBean implements Serializable{
         if (id != null) { // Caso de uso editar
             usuarioSeleccionado = this.usuarioFacade.find(id);
         }
-        listaMovimientos = this.movimientoFacade.buscarPorIdUsuario(id);
+        //Con ajax no se usa
+        //listaMovimientos = this.movimientoFacade.buscarPorIdUsuario(id);
         return "empleado_Movimiento";
     }
     

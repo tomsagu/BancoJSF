@@ -26,15 +26,15 @@
                     
                 </td></tr>
             <tr><td><h:form><div align="center"><b>Ordenar por:</b>
-                            <h:selectOneMenu value="#{empleadoBean.ordenActual}">
-                            <f:selectItems value="#{empleadoBean.opcionesOrden}"/>
+                            <h:selectOneMenu value="#{usuarioBean.ordenActual}">
+                            <f:selectItems value="#{usuarioBean.opcionesOrden}"/>
                             <f:ajax render="ordenTable"/>
                         </h:selectOneMenu>
                     </div></h:form></td></tr>
             
         </table>
 
-        <h:dataTable id="ordenTable" class="customers" value="#{empleadoBean.listaMovimientosOrden}" var="movimientos" >
+        <h:dataTable id="ordenTable" class="customers" value="#{usuarioBean.listaMovimientosOrden}" var="movimientos" >
             <h:column>
                 <f:facet name="header">
                     Fecha

@@ -81,5 +81,56 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> {
         
         return lista;
     }
+    public List<Movimiento> buscarPorDNITipoDescendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.tipo desc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
     
+    public List<Movimiento> buscarPorDNITipoAscendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.tipo asc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+
+   public List<Movimiento> buscarPorDNIEntidadDescendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.entidad desc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+   
+    public List<Movimiento> buscarPorDNIEntidadAscendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.entidad asc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+    public List<Movimiento> buscarPorDNIEmpleadoDescendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.usuarioidUsuario1 desc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
+   
+    public List<Movimiento> buscarPorDNIEmpleadoAscendente(String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.usuarioidUsuario.dni  = :id or m.entidad = :id order by m.usuarioidUsuario1 asc");
+        q.setParameter("id", dni);
+        
+        List<Movimiento> lista = q.getResultList();
+        
+        return lista;
+    }
 }

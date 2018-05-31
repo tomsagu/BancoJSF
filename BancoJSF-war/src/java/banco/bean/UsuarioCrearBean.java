@@ -13,6 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -96,10 +98,18 @@ public class UsuarioCrearBean {
 
             if (usuario.getIdUsuario() != null) {
                 this.usuarioFacade.edit(usuario);
-            } else {  
+                
+            this.empleadoBean.setUsuarioSeleccionado(null);
+            this.empleadoBean.init();
+            
+            FacesMessage msg;
+            msg = new FacesMessage("Usuario editado con exito");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            
+            return "empleado_Usuario";
+            } else {
                 usuario.setSaldo(0.0);
                 
-                // Generacion de numero de cuenta aleatorio de 8 digitos
                 Random rnd = new Random();
                 boolean valido = false;
                 List<Integer> cuentas = this.usuarioFacade.findAllCuentas();
@@ -113,11 +123,16 @@ public class UsuarioCrearBean {
                 }
                 
                 this.usuarioFacade.create(usuario);
-            }
+                
             this.empleadoBean.setUsuarioSeleccionado(null);
             this.empleadoBean.init();
-
+            
+            FacesMessage msg;
+            msg = new FacesMessage("Usuario insertado con exito");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            
             return "empleado_Usuario";
+            }
         } else {
             message = "Las contraseñas no coinciden";
             return (null);

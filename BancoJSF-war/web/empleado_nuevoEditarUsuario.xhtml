@@ -78,9 +78,7 @@
                     <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.alta}"/></td>
                 </tr>
             </table>
-            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar">
-            <f:ajax execute="@form" render="error"/>
-            </h:commandButton>
+            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar"></h:commandButton>
             <h:commandLink action="#{usuarioCrearBean.doCancelar()}" value="Cancelar" immediate="true"/>
             <h2><h:outputText value="#{usuarioCrearBean.message}" id="error"/></h2>
         </h:form>

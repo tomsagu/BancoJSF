@@ -78,9 +78,9 @@
                     <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.alta}"/></td>
                 </tr>
             </table>
-            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar"></h:commandButton>
+            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar"/>
             <h:commandLink action="#{usuarioCrearBean.doCancelar()}" value="Cancelar" immediate="true"/>
-            <h2><h:outputText value="#{usuarioCrearBean.message}" id="error"/></h2>
+            <center><h2><h:outputText value="#{usuarioCrearBean.message}"/></h2></center>
         </h:form>
     </h:body>
 </html>

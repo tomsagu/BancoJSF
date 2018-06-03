@@ -15,20 +15,21 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
+        <h:form>
         <ul1>
             <h:link class="a" outcome="empleado_Usuario" value="Usuarios"/>
         </ul1>
         <table class="customers">
             <td> <h2>Hola #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos} Lista Usuarios</h2> </td>
-            <td><h:form>
+            <td>
                   <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
-                </h:form></td>
-            <tr><td><h:form><div align="center"><b>Ordenar por:</b>
+                </td>
+            <tr><td><div align="center"><b>Ordenar por:</b>
                             <h:selectOneMenu value="#{usuarioBean.ordenActualUsuario}">
                             <f:selectItems value="#{usuarioBean.opcionesOrdenUsuario}"/>
                             <f:ajax render="ordenTable"/>
                         </h:selectOneMenu>
-                    </div></h:form></td></tr>
+                    </div></td></tr>
         </table>
 
         <h:dataTable id = "ordenTable" value="#{usuarioBean.listaUsuariosOrden}" var="listaUsuarios" class="customers">
@@ -79,27 +80,28 @@ and open the template in the editor.
                             Alta
                         </f:facet>
                         <!--El !=0 es para pasar el short a boolean-->
-                        <h:form>
+                        
                         <h:selectBooleanCheckbox value="#{listaUsuarios.estado!=0}" disabled="true"/>
-                        </h:form>
+                        
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             Editar Usuario
                         </f:facet>
-                        <h:form>
+                        
                             <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditar(listaUsuarios.idUsuario)}"/>
-                        </h:form>
+                        
                     </h:column>  
                     <h:column>
                         <f:facet name="header">
                             Movimientos
                         </f:facet>
-                        <h:form>
+                        
                             <h:commandButton value="Movimientos" action="#{empleadoBean.doMovimientos(listaUsuarios.idUsuario)}" class="button1"/>
-                        </h:form>
+                        
                     </h:column> 
                 </h:dataTable>
                     <h:button outcome="empleado_nuevoEditarUsuario" value="Insertar Nuevo Usuario" class="button1"/>  
+            </h:form>
     </h:body>
 </html>

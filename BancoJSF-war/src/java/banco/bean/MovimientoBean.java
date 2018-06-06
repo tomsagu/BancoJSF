@@ -126,7 +126,7 @@ public class MovimientoBean {
         this.movimientosMap.put("Empleado ascendente", this.movimientoFacade.buscarPorDNIEmpleadoAscendente(usuarioSeleccionado.getDni()));
     }
     
-    public void doBuscar(){
+    public String doBuscar(){
         if(this.criterioActualBusqueda.equals("1")){
            this.movimientosMap.put("Concepto", this.movimientoFacade.buscarPorConcepto(stringBusqueda,this.usuarioSeleccionado.getDni()));
            this.ordenActual = "Concepto";
@@ -134,5 +134,6 @@ public class MovimientoBean {
            this.movimientosMap.put("Tipo", this.movimientoFacade.buscarPorTipo(stringBusqueda,this.usuarioSeleccionado.getDni()));
            this.ordenActual = "Tipo";
         }
+        return "empleado_Movimiento";
     }
 }

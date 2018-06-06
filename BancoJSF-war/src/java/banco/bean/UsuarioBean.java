@@ -189,7 +189,7 @@ public class UsuarioBean {
 
     }
     
-    public void doBuscar(){
+    public String doBuscar(){
         if(this.criterioActualBusqueda.equals("1")){
            this.usuariosMap.put("Nombre", this.usuarioFacade.buscarPorNombre(0, stringBusqueda));
            this.ordenActualUsuario = "Nombre";
@@ -197,9 +197,10 @@ public class UsuarioBean {
            this.usuariosMap.put("DNI", this.usuarioFacade.buscarPorDni(0, stringBusqueda));
            this.ordenActualUsuario = "DNI";
         }
+        return "empleado_Usuario";
     }
     
-    public void doBuscarMovimiento(){
+    public String doBuscarMovimiento(){
         if(this.busquedaMovimiento.equals("1")){
            this.movimientosMap.put("Concepto", this.movimientoFacade.buscarPorConcepto(stringBusquedaMovimiento, this.usuario.getDni()));
            this.ordenActual = "Concepto";
@@ -207,5 +208,6 @@ public class UsuarioBean {
            this.movimientosMap.put("Tipo", this.movimientoFacade.buscarPorTipo(stringBusquedaMovimiento, this.usuario.getDni()));
            this.ordenActual = "Tipo";
         }
+        return "usuario_Movimientos";
     }
 }

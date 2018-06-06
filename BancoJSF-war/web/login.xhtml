@@ -9,45 +9,51 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <!-- Bootstrap CSS -->
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>      
-        <h:outputStylesheet library="css" name="FancyTable.css"/>
+    <f:view locale="#{localeBean.currentLocale}">
+        <h:head>
+            <!-- Bootstrap CSS -->
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>      
+            <h:outputStylesheet library="css" name="FancyTable.css"/>
 
-        <title>Inicio de Sesión</title>
-        
+            <title>#{msgs.inputPageTitle}</title>
 
-    </h:head>
-    <h:body class="bg-light" >
-       
-        <div class="login">
-            <center> <h1>Inicio de Sesión</h1></center> <br></br>
-         
+        </h:head>
+        <h:body class="bg-light" >
             <h:form class="form-signin">
-                <table>
-                    <tr>
-                        <center>DNI:</center>
-                    </tr>
-                    <tr>
-                        <center><h:inputText class="form-control"  value="#{loginBean.usuario.dni}"/> </center> <br></br>
-                    </tr>                 
-                    
-                    <tr>
-                       <center> CONTRASEÑA:</center>
-                    </tr>
-                    <tr>
-                       <center> <h:inputSecret class="form-control" value="#{loginBean.usuario.contrasena}"/></center><br></br>             
-                    </tr>
+                <h:commandLink value="English" action="#{localeBean.setEnglish}">
+                    <img src="resources/images/en_flag.png"/>
+                </h:commandLink>
+                <h:commandLink value="Español" action="#{localeBean.setSpanish}">   
+                    <img src="resources/images/es_flag.png"/>
+                </h:commandLink>
+                <div class="login">
 
-                </table>
-                <h:commandButton  class="btn btn-lg btn-primary btn-block" value = "Enviar" action="#{loginBean.doLogin()}">
-                </h:commandButton>
-                 <br/>
-                 <center><h2><h:outputText value="#{loginBean.message}"/></h2></center>
+                    <center> <h1>#{msgs.inputPageTitle}</h1></center> <br></br>
+                    <table>
+                        <tr>
+                            <center>#{msgs.dni}</center>
+                        </tr>
+                        <tr>
+                            <center><h:inputText class="form-control"  value="#{loginBean.usuario.dni}"/> </center> <br></br>
+                        </tr>                 
+
+                        <tr>
+                            <center>#{msgs.pass}</center>
+                        </tr>
+                        <tr>
+                            <center> <h:inputSecret class="form-control" value="#{loginBean.usuario.contrasena}"/></center><br></br>             
+                        </tr>
+
+                    </table>
+                    <h:commandButton  class="btn btn-lg btn-primary btn-block" value = "#{msgs.enviar}" action="#{loginBean.doLogin()}">
+                    </h:commandButton>
+                    <br/>
+                    <center><h2><h:outputText value="#{loginBean.message}"/></h2></center>
+
+                </div>
             </h:form>
-        </div>
-    </h:body>
-
+        </h:body>
+    </f:view>
 </html>

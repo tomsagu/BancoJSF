@@ -25,7 +25,16 @@
                                 <f:selectItems value="#{movimientoBean.opcionesOrden}"/>
                                 <f:ajax render="ordenTable"/>
                             </h:selectOneMenu>
-                        </div></td></tr>
+                        </div></td>
+                <td><div align="center"><b>Buscar por:</b>
+                        <h:selectOneMenu value="#{movimientoBean.criterioActualBusqueda}">
+                            <f:selectItem itemValue="1" itemLabel="Concepto"/>
+                            <f:selectItem itemValue="2" itemLabel="Tipo"/>
+                        </h:selectOneMenu>
+                <h:inputText value="#{movimientoBean.stringBusqueda}"></h:inputText>
+                        <h:commandButton class="button1" value="Buscar" action="#{movimientoBean.doBuscar()}">
+                        </h:commandButton>
+                    </div></td></tr>
             </table>
             <h:dataTable id = "ordenTable"  value="#{movimientoBean.listaMovimientosOrden}" var="listaMovimientos" class="customers" >
                 <h:column >

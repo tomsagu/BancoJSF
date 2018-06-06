@@ -36,7 +36,7 @@ public class EmpleadoBean implements Serializable{
     private MovimientoFacade movimientoFacade;
 
     private String ordenActual;
-    private Map<String, List<Movimiento>> movimientosMap  = new HashMap<>();;
+    private Map<String, List<Movimiento>> movimientosMap  = new HashMap<>();
     private List<String> opcionesOrden;
     
 

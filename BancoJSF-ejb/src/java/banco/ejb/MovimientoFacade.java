@@ -133,4 +133,24 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> {
         
         return lista;
     }
+
+    public List<Movimiento> buscarPorConcepto(String concepto, String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.concepto= :c and m.usuarioidUsuario.dni  = :id");
+        q.setParameter("c", concepto);
+          q.setParameter("id", dni);
+        List<Movimiento> lista = q.getResultList();
+
+        return lista;
+    }
+    
+    public List<Movimiento> buscarPorTipo(String tipo,String dni){
+        Query q = this.em.createQuery("select m from Movimiento m where m.tipo= :t and m.usuarioidUsuario.dni  = :id");
+        q.setParameter("t", tipo);
+        q.setParameter("id", dni);
+        List<Movimiento> lista = q.getResultList();
+
+        return lista;
+    }
+
+    
 }

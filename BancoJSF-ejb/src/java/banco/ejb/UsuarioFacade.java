@@ -145,4 +145,22 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
             return lista;
         }
     }
+    
+    public List<Usuario> buscarPorNombre(Integer empleado, String nombre){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e and u.nombre= :n");
+        q.setParameter("e", empleado);
+        q.setParameter("n", nombre);
+        List<Usuario> lista = q.getResultList();
+
+        return lista;
+    }
+    
+    public List<Usuario> buscarPorDni(Integer empleado, String dni){
+        Query q = this.em.createQuery("select u from Usuario u where u.empleado = :e and u.dni= :d");
+        q.setParameter("e", empleado);
+        q.setParameter("d", dni);
+        List<Usuario> lista = q.getResultList();
+
+        return lista;
+    }
 }

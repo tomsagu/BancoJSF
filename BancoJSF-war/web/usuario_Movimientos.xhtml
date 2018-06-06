@@ -9,6 +9,7 @@
 
     </h:head>
     <h:body>
+        <h:form>
         <ul1>
             <h:link class="a" outcome="usuario_Movimientos" value="Movimientos"/>
             <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
@@ -20,17 +21,26 @@
 
                 <td>Saldo: #{loginBean.usuario.saldo}€</td>
                 <td>
-                    <h:form>
+                    
                         <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
-                    </h:form>
+                
                     
                 </td></tr>
-            <tr><td><h:form><div align="center"><b>Ordenar por:</b>
+            <tr><td><div align="center"><b>Ordenar por:</b>
                             <h:selectOneMenu value="#{usuarioBean.ordenActual}">
                             <f:selectItems value="#{usuarioBean.opcionesOrden}"/>
                             <f:ajax render="ordenTable"/>
                         </h:selectOneMenu>
-                    </div></h:form></td></tr>
+                    </div></td>
+            <td><div align="center"><b>Buscar por:</b>
+                        <h:selectOneMenu value="#{usuarioBean.busquedaMovimiento}">
+                            <f:selectItem itemValue="1" itemLabel="Concepto"/>
+                            <f:selectItem itemValue="2" itemLabel="Tipo"/>
+                        </h:selectOneMenu>
+                <h:inputText value="#{usuarioBean.stringBusquedaMovimiento}"></h:inputText>
+                        <h:commandButton class="button1" value="Buscar" action="#{usuarioBean.doBuscarMovimiento()}">
+                        </h:commandButton>
+                    </div></td></tr>
             
         </table>
 
@@ -54,14 +64,19 @@
                 #{movimientos.concepto}
             </h:column>
             <h:column>
+                    <f:facet name="header">
+                        Tipo de Movimiento
+                    </f:facet>
+                    #{movimientos.tipo}
+                </h:column>
+            <h:column>
                 <f:facet name="header">
                     Cantidad
                 </f:facet>
                 #{movimientos.cantidad}€
             </h:column>
         </h:dataTable>
-
-
+    </h:form>
 
     </h:body>
 </html>

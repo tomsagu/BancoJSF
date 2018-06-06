@@ -22,13 +22,22 @@ and open the template in the editor.
         <table class="customers">
             <td> <h2>Hola #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos} Lista Usuarios</h2> </td>
             <td>
-                  <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+                <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                 </td>
             <tr><td><div align="center"><b>Ordenar por:</b>
-                            <h:selectOneMenu value="#{usuarioBean.ordenActualUsuario}">
+                        <h:selectOneMenu value="#{usuarioBean.ordenActualUsuario}">
                             <f:selectItems value="#{usuarioBean.opcionesOrdenUsuario}"/>
-                            <f:ajax render="ordenTable"/>
+                            <f:ajax render="ordenTable cab"/>
                         </h:selectOneMenu>
+                    </div></td>
+                    <td><div align="center"><b>Buscar por:</b>
+                        <h:selectOneMenu value="#{usuarioBean.criterioActualBusqueda}">
+                            <f:selectItem itemValue="1" itemLabel="Nombre"/>
+                            <f:selectItem itemValue="2" itemLabel="DNI"/>
+                        </h:selectOneMenu>
+                <h:inputText value="#{usuarioBean.stringBusqueda}"></h:inputText>
+                        <h:commandButton class="button1" value="Buscar" action="#{usuarioBean.doBuscar()}">
+                        </h:commandButton>
                     </div></td></tr>
         </table>
 

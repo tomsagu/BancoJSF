@@ -4,31 +4,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+       <f:view locale="#{localeBean.currentLocale}">
     <h:outputStylesheet library="css" name="FancyTable.css"/>
 
     <h:head>
-        <title>Crear/EditarMovimiento</title>
+        <title>#{msgs.crearEditarMovimiento}</title>
     </h:head>
     <h:body>
-        <h1>Crear/EditarMovimiento</h1>
+        <h1>#{msgs.crearEditarMovimiento}</h1>
         <h:form>
             <table class="customers">
                 <tr>
-                    <td>Concepto:</td>
+                    <td>#{msgs.concepto}:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.concepto}">
                             <f:validateLength minimum="1" maximum="15"/>    
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td>Fecha:</td>
+                    <td>#{msgs.fecha}:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.fecha}">
                             <f:validateLength minimum="1" maximum="10"/>    
                         </h:inputText>
                     </td>     
                 </tr>
                 <tr>
-                    <td>Cantidad MAXIMO 1000000:</td>
+                    <td>#{msgs.cantidad} MAX 1000000:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.cantidad}"><br/>
                             <f:validateDoubleRange minimum="1" maximum="1000000"/>    
                            
@@ -36,13 +37,13 @@
                     </td>   
                     <tr>
                         <td>
-                            Saldo Actual:
+                            #{msgs.saldo}:
                             <h:outputText value="#{empleadoCrearMovimientoBean.saldocliente}"/>
                         </td>
                     </tr>
                 </tr>
                 <tr>
-                    <td>Tipo de Movimiento:</td>
+                    <td>#{msgs.tipoMovimiento}:</td>
                     <td><h:selectOneMenu value="#{empleadoCrearMovimientoBean.movimiento.tipo}" >
                             <f:selectItem  itemValue="ingreso" 
                                            itemLabel="Ingreso"          
@@ -57,26 +58,27 @@
                         </h:selectOneMenu> </td>                   
                 </tr>
                 <tr>
-                    <td>Entidad(en caso de transferencia escribir DNI):</td>
+                    <td>#{msgs.entidadCrearMovimiento}:</td>
                     <td><h:inputText value="#{empleadoCrearMovimientoBean.movimiento.entidad}">
                             <f:validateLength minimum="1" maximum="15"/>    
                         </h:inputText>
                     </td>                    
                 </tr>
                 <tr>
-                    <td>DNI Usuario Receptor(no editable):</td>
+                    <td>>#{msgs.dnireceptor}:</td>
                     <td><h:inputText readonly="true" value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario.dni}"/> #{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario.nombre} </td>                    
                 </tr> 
                 <tr>
-                    <td>DNI Empleado Supervisor(no editable):</td>
+                    <td>#{msgs.dniempleado}:</td>
                     <td><h:inputText readonly="true"  value="#{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario1.dni}"/> #{empleadoCrearMovimientoBean.movimiento.usuarioidUsuario1.nombre}</td>                    
                 </tr>               
             </table>
-            <h:commandButton action="#{empleadoCrearMovimientoBean.doGuardar()}" value="Enviar" />
-            <h:commandLink action="#{empleadoCrearMovimientoBean.doCancelar()}" immediate="true" value="Cancelar"/>
+            <h:commandButton action="#{empleadoCrearMovimientoBean.doGuardar()}" value="#{msgs.enviar}" />
+            <h:commandLink action="#{empleadoCrearMovimientoBean.doCancelar()}" immediate="true" value="#{msgs.cancelar}"/>
             
             <center><h2><h:outputText value="#{empleadoCrearMovimientoBean.message}"/></h2></center>
         </h:form>
     </h:body>
+     </f:view>
 </html>
 

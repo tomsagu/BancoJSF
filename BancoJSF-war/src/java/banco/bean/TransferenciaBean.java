@@ -92,10 +92,10 @@ public class TransferenciaBean {
         } else if (busqueda.equals(usuario)) {
             message = "No se puede mandar al mismo usuario";
             return(null);
-        }else if(busqueda == null) {
+        } else if(busqueda == null) {
             message = "Usuario desconocido";
             return(null);
-        }else if ((cantidadDouble > saldoUsuario) || (cantidadDouble < 0)) {
+        } else if ((cantidadDouble > saldoUsuario) || (cantidadDouble < 0)) {
             message = "Cantidad incorrecto";
             return(null);
         } else {
@@ -125,7 +125,7 @@ public class TransferenciaBean {
     @PostConstruct
     public void init (){
         movimiento = new Movimiento();
-        //cantidad = "";
     }
     
 }
+

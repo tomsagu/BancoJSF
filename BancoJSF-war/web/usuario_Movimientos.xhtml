@@ -9,54 +9,74 @@
         <h:outputStylesheet library="css" name="FancyTable.css"/>
     </h:head>
     <h:body>
-            
-                <table width="95%">
-                    <td align="left">
-                        <ul1>
-                        <h:link id="a2" class="active" outcome="usuario_Movimientos" value="Movimientos"/>
-                        <h:link id="a1" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
-                        <h:link id="a3" class="notActive" outcome="usuario_Transferencia" value="Transferencias"/>
-                        </ul1>
-                    </td>
-                </table>
-                <ul>
-                <table id="customers">
-                    <tr>
-                        <td> <h2>#{msgs.hola} #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
-                        <td><a href="login.xhtml">#{msgs.salir}</a></td>
-                    </tr>
-                </table>
-            
-                      
-            <h:dataTable id="customers" value="#{movimientosManagedBean.listaMovimientos}" var="movimientos" styleClass="customers">
+            <h:form>
+        <ul1>
+            <h:link class="a" outcome="usuario_Movimientos" value="Movimientos"/>
+            <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
+            <h:link class="a"  outcome="usuario_Transferencia" value="Transferencias"/>
+        </ul1>
+
+        <table class="customers">
+            <tr><td> <h2>#{msgs.hola} #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
+
+                <td>#{msgs.saldo}#{msgs.dosPuntos} #{loginBean.usuario.saldo}€</td>
+                <td>
+                    
+                        <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                 
-                <h:column>
+                    
+                </td></tr>
+            <tr><td><div align="center"><b>#{msgs.ordenarPor}</b>
+                            <h:selectOneMenu value="#{usuarioBean.ordenActual}">
+                            <f:selectItems value="#{usuarioBean.opcionesOrden}"/>
+                            <f:ajax render="ordenTable"/>
+                        </h:selectOneMenu>
+                    </div></td>
+                <td><div align="center"><b>#{msgs.buscarPor}</b>
+                        <h:selectOneMenu value="#{usuarioBean.busquedaMovimiento}">
+                            <f:selectItem itemValue="1" itemLabel="Concepto"/>
+                            <f:selectItem itemValue="2" itemLabel="Tipo"/>
+                        </h:selectOneMenu>
+                <h:inputText value="#{usuarioBean.stringBusquedaMovimiento}"></h:inputText>
+                <h:commandButton class="button1" value="#{msgs.buscar}" action="#{usuarioBean.doBuscarMovimiento()}">
+                        </h:commandButton>
+                    </div></td></tr>
+            
+        </table>
+           <h:dataTable id="ordenTable" class="customers" value="#{usuarioBean.listaMovimientosOrden}" var="movimientos" >
+            <h:column>
+                <f:facet name="header">
+                    Fecha
+                </f:facet>
+                #{movimientos.fecha}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Entidad
+                </f:facet>
+                #{movimientos.entidad}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Concepto
+                </f:facet>
+                #{movimientos.concepto}
+            </h:column>
+            <h:column>
                     <f:facet name="header">
-                        #{msgs.fecha}
+                        Tipo de Movimiento
                     </f:facet>
-                        #{movimientos.fecha}
+                    #{movimientos.tipo}
                 </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{msgs.entidad}
-                    </f:facet>
-                        #{movimientos.entidad}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{msgs.concepto}
-                    </f:facet>
-                        #{movimientos.concepto}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{msgs.cantidad}
-                    </f:facet>
-                        #{movimientos.cantidad}
-                </h:column>
-            </h:dataTable>
-        </ul>
-              
+            <h:column>
+                <f:facet name="header">
+                    Cantidad
+                </f:facet>
+                #{movimientos.cantidad}€
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
     </h:body>
     </f:view>
 </html>

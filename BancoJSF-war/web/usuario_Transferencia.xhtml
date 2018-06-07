@@ -8,55 +8,51 @@
         <title>Transferencia</title>
     </h:head>
     <h:body>
-        
-            <h:link class="a" outcome="usuario_Movimientos" value="Movimientos"/>
-            <h:link class="a"  outcome="usuario_DatosPersonales" value="Datos Personales"/>
-            <h:link class="a"  outcome="usuario_Transferencia" value="Transferencias"/>
- 
-       
-            <table class="customers">
-                <tr><td align="center"> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
+        <ul1>
+            <h:link id="a2" class="notActive" outcome="usuario_Movimientos" value="Movimientos"/>
+            <h:link id="a1" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
+            <h:link id="a3" class="active" outcome="usuario_Transferencia" value="Transferencias"/>
+        </ul1>
 
-                <td align="center">Saldo: #{loginBean.usuario.saldo}€</td>
-                <td align="center"> 
-                    <h:form>
-                        <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
-                    </h:form>
-                    
-                    
-                </td></tr>
-             <h:form>
+        <ul>
+            <table id="customers">
                 <tr>
-                    <td align="center">BENEFICIARIO(DNI):</td>
-                    <td colspan="2" align="center"><h:inputText value="#{transferenciaBean.movimiento.entidad}" size="50"></h:inputText></td>
+                    <td> <h2>Hola #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
+                    <td><a href="login.xhtml">Salir</a></td>
+                </tr>
+                <th>Transferencia</th>
+                <th></th>
+            </table>
+        <h:form id="form">
+            <table id="customers">
+                <tr>
+                    <td>*BENEFICIARIO:</td>
+                    <td><h:inputText id="beneficiario" value="#{transferenciaBean.movimiento.entidad}"></h:inputText></td>
                 </tr>                
                 <tr>
-                    <td align="center">CONCEPTO:</td>
-                    <td colspan="2" align="center"><h:inputText value="#{transferenciaBean.movimiento.concepto}" size="50"></h:inputText></td>
+                    <td>CONCEPTO:</td>
+                    <td><h:inputText id="concepto" value="#{transferenciaBean.movimiento.concepto}"></h:inputText></td>
                 </tr>
                 <tr>
-                    <td align="center">CANTIDAD:</td>
-                    <td colspan="2" align="center"><h:inputText value="#{transferenciaBean.cantidad}" size="50"></h:inputText></td>
+                    <td>CANTIDAD:</td>
+                    <td><h:inputText id="cantidad" value="#{transferenciaBean.cantidad}"></h:inputText></td>
                 </tr>
-                  </h:form>
             </table>
             <table id="customers">
                 <td>
-                    <h:form>
-                        
-                    <h:commandButton class="button" value="Enviar" action="#{transferenciaBean.doTransferencia()}">
+                    <h:commandButton value="Enviar" action="#{transferenciaBean.doTransferencia()}">
                         <f:ajax execute="@form" render="error"/>
                     </h:commandButton>
-                    </h:form>
                     
                 </td>
                 <td>
-                    <h:outputText value="#{transferenciaBean.message}" id="error"/>
+                    <h:outputText id="error" value="#{transferenciaBean.message}"/>
                 </td>
-               
             </table>
-        
-
+        </h:form>
+        </ul>
     </h:body>
 </html>
+
+
 

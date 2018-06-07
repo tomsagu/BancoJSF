@@ -4,83 +4,86 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
+    <f:view locale="#{localeBean.currentLocale}">
+    
         <h:outputStylesheet library="css" name="FancyTable.css"/>
     
         <h:head>
-        <title>Crear/Editar Usuario</title>
+        <title>#{msgs.insertarEditarUsuario}</title>
     </h:head>
     <h:body>
-        <h1>Crear/Editar Usuario</h1>
+        <h1>#{msgs.insertarEditarUsuario}</h1>
         <h:form>
             <table class="customers">
                 <tr>
-                    <td><b>Nombre:</b></td>
+                    <td><b>#{msgs.nombre}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.nombre}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Apellidos:</b></td>
+                    <td><b>#{msgs.apellidos}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.apellidos}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>DNI:</b></td>
+                    <td><b>#{msgs.dni}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.dni}">
                         <f:validateLength minimum="1" maximum="9"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Contraseña:</b></td>
+                    <td><b>#{msgs.pass}</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.contrasena}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Confirme contraseña:</b></td>
+                    <td><b>#{msgs.pass}</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.contrasenaConf}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Telefono:</b></td>
+                    <td><b>#{msgs.telefono}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.telefono}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Correo:</b></td>
+                    <td><b>#{msgs.email}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.email}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Domicilio:</b></td>
+                    <td><b>#{msgs.domicilio}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.domicilio}">
                         <f:validateLength minimum="1" maximum="30"/>
                         </h:inputText>
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Numero de cuenta (No editable):</b></td>
+                    <td><b>#{msgs.numeroCuenta}:</b></td>
                     <td><h:inputText value="#{usuarioCrearBean.usuario.cuenta}" readonly="true"/></td>              
                 </tr>
                 <tr>
-                    <td><b>Alta:</b></td>
+                    <td><b>#{msgs.alta}:</b></td>
                     <td><h:selectBooleanCheckbox value="#{usuarioCrearBean.alta}"/></td>
                 </tr>
             </table>
-            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="Enviar"/>
-            <h:commandLink action="#{usuarioCrearBean.doCancelar()}" value="Cancelar" immediate="true"/>
+            <h:commandButton action="#{usuarioCrearBean.doGuardar()}" value="#{msgs.enviar}"/>
+            <h:commandLink action="#{usuarioCrearBean.doCancelar()}" value="#{msgs.cancelar}" immediate="true"/>
             <center><h2><h:outputText value="#{usuarioCrearBean.message}"/></h2></center>
         </h:form>
     </h:body>
+    </f:view>
 </html>

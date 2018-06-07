@@ -6,28 +6,32 @@
     <h:outputStylesheet library="css" name="FancyTable.css"/>
     <f:view locale="#{localeBean.currentLocale}">
     <h:head>
-        <title>#{msgs.transferencia}</title>
+        <title>#{msgs.transferencias}</title>
     </h:head>
     <h:body>
-        <ul1>
-            <h:link id="a2" class="notActive" outcome="usuario_Movimientos" value="Movimientos"/>
-            <h:link id="a1" class="notActive" outcome="usuario_DatosPersonales" value="Datos Personales"/>
-            <h:link id="a3" class="active" outcome="usuario_Transferencia" value="Transferencias"/>
-        </ul1>
+        <ull>
+            <h:link class="a"  outcome="usuario_Movimientos" value="#{msgs.movimientos}"/>
+            <h:link class="a"  outcome="usuario_DatosPersonales" value="#{msgs.datosPersonales}"/>
+            <h:link class="a"  outcome="usuario_Transferencia" value="#{msgs.transferencias}"/>
+        </ull>
 
         <ul>
-            <table id="customers">
-                <tr>
-                    <td> <h2>#{msgs.hola} #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
-                    <td><a href="login.xhtml">#{msgs.salir}</a></td>
-                </tr>
-                <th>#{msgs.transferencia}</th>
-                <th></th>
+            <h:form id="form">
+            <table class="customers">
+                    <tr><td> <h2>#{msgs.hola} #{loginBean.usuario.nombre} #{loginBean.usuario.apellidos}</h2> </td>
+
+                        <td>#{msgs.saldo}#{msgs.dosPuntos} #{loginBean.usuario.saldo}€</td>
+                        <td>
+
+                            <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+
+
+                        </td></tr>
             </table>
-        <h:form id="form">
-            <table id="customers">
+        
+            <table class="customers">
                 <tr>
-                    <td>*#{msgs.beneficiario}:</td>
+                    <td>#{msgs.beneficiario}</td>
                     <td><h:inputText id="beneficiario" value="#{transferenciaBean.movimiento.entidad}"></h:inputText></td>
                 </tr>                
                 <tr>
@@ -41,7 +45,7 @@
             </table>
             <table id="customers">
                 <td>
-                    <h:commandButton value="#{msgs.enviar}" action="#{transferenciaBean.doTransferencia()}">
+                    <h:commandButton class="button" value="#{msgs.enviar}" action="#{transferenciaBean.doTransferencia()}">
                         <f:ajax execute="@form" render="error"/>
                     </h:commandButton>
                     

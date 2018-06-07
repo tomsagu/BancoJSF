@@ -54,7 +54,7 @@ public class MovimientosManagedBean implements Serializable {
     
     @PostConstruct
     public void init(){
-        listaMovimientos = this.movimientoFacade.BuscarMovimientoPorDni(login.usuario.getDni());
+        listaMovimientos = this.movimientoFacade.buscarMovimientoPorDni(login.usuario.getDni());
     }
     
 }

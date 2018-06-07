@@ -11,32 +11,32 @@ and open the template in the editor.
     
     <h:outputStylesheet library="css" name="FancyTable.css"/>
     <h:head>
-        <title>Lista Usuarios</title>
+        <title>#{msgs.listaUsuarios}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <h:form>
         <ul1>
-            <h:link class="a" outcome="empleado_Usuario" value="Usuarios"/>
+            <h:link class="a" outcome="empleado_Usuario" value="#{msgs.usuarios}"/>
         </ul1>
         <table class="customers">
-            <td> <h2>Hola #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos} Lista Usuarios</h2> </td>
+            <td> <h2>#{msgs.hola} #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos} #{msgs.listaUsuarios}</h2> </td>
             <td>
-                <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+                <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                 </td>
-            <tr><td><div align="center"><b>Ordenar por:</b>
+            <tr><td><div align="center"><b>#{msgs.ordenarPor}</b>
                         <h:selectOneMenu value="#{usuarioBean.ordenActualUsuario}">
                             <f:selectItems value="#{usuarioBean.opcionesOrdenUsuario}"/>
                             <f:ajax render="ordenTable cab"/>
                         </h:selectOneMenu>
                     </div></td>
-                    <td><div align="center"><b>Buscar por:</b>
+                <td><div align="center"><b>#{msgs.buscarPor}</b>
                         <h:selectOneMenu value="#{usuarioBean.criterioActualBusqueda}">
                             <f:selectItem itemValue="1" itemLabel="Nombre"/>
                             <f:selectItem itemValue="2" itemLabel="DNI"/>
                         </h:selectOneMenu>
                 <h:inputText value="#{usuarioBean.stringBusqueda}"></h:inputText>
-                        <h:commandButton class="button1" value="Buscar" action="#{usuarioBean.doBuscar()}">
+                        <h:commandButton class="button1" value="#{msgs.buscar}" action="#{usuarioBean.doBuscar()}">
                         </h:commandButton>
                     </div></td></tr>
         </table>
@@ -44,49 +44,49 @@ and open the template in the editor.
         <h:dataTable id = "ordenTable" value="#{usuarioBean.listaUsuariosOrden}" var="listaUsuarios" class="customers">
                     <h:column >
                         <f:facet name="header">
-                            Nombre
+                            #{msgs.nombre}
                         </f:facet>
                         #{listaUsuarios.nombre}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Apellidos
+                            #{msgs.apellidos}
                         </f:facet>
                         #{listaUsuarios.apellidos}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            DNI
+                            #{msgs.dni}
                         </f:facet>
                         #{listaUsuarios.dni}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Teléfono
+                            #{msgs.telefono}
                         </f:facet>
                         #{listaUsuarios.telefono}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Email
+                            #{msgs.email}
                         </f:facet>
                         #{listaUsuarios.email}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Número de cuenta
+                            #{msgs.numeroCuenta}
                         </f:facet>
                         #{listaUsuarios.cuenta}
                     </h:column>
                     <h:column >
                         <f:facet name="header">
-                            Saldo
+                            #{msgs.saldo}
                         </f:facet>
                         #{listaUsuarios.saldo}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Alta
+                            #{msgs.alta}
                         </f:facet>
                         <!--El !=0 es para pasar el short a boolean-->
                         
@@ -95,22 +95,22 @@ and open the template in the editor.
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Editar Usuario
+                            #{msgs.editarUsuario}
                         </f:facet>
                         
-                            <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditar(listaUsuarios.idUsuario)}"/>
+                        <h:commandButton styleClass="button1" value="#{msgs.editar}" action="#{empleadoBean.doEditar(listaUsuarios.idUsuario)}"/>
                         
                     </h:column>  
                     <h:column>
                         <f:facet name="header">
-                            Movimientos
+                            #{msgs.movimientos}
                         </f:facet>
                         
-                            <h:commandButton value="Movimientos" action="#{empleadoBean.doMovimientos(listaUsuarios.idUsuario)}" class="button1"/>
+                        <h:commandButton value="#{msgs.movimientos}" action="#{empleadoBean.doMovimientos(listaUsuarios.idUsuario)}" class="button1"/>
                         
                     </h:column> 
                 </h:dataTable>
-                    <h:button outcome="empleado_nuevoEditarUsuario" value="Insertar Nuevo Usuario" class="button1"/>  
+                    <h:button outcome="empleado_nuevoEditarUsuario" value="#{msgs.insertarNuevoUsuario}" class="button1"/>  
             </h:form>
     </h:body>
 </html>

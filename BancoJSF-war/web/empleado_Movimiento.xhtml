@@ -6,102 +6,102 @@
 
     <h:outputStylesheet library="css" name="FancyTable.css"/>
     <h:head>
-        <title>Lista de Movimientos</title>
+        <title>#{msgs.listaDeMovimientos}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <h:form>
             <ul1>
-                <h:commandLink id="a" class="notActive" value="Usuarios" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
+                <h:commandLink id="a" class="notActive" value="#{msgs.usuarios}" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
 
             </ul1>
             <table class="customers">
-                <td> <h2>Lista de Movimientos de #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2> </td>
+                <td> <h2>#{msgs.listaDeMovimientos} #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2> </td>
                 <td>
-                    <h:commandLink class="button2" value="Salir" action="#{loginBean.borrarSesion()}" styleClass="button2" />
+                    <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                 </td>
-                <tr><td><div align="center"><b>Ordenar por:</b>
+                <tr><td><div align="center"><b>#{msgs.ordenarPor}</b>
                             <h:selectOneMenu value="#{movimientoBean.ordenActual}">
                                 <f:selectItems value="#{movimientoBean.opcionesOrden}"/>
                                 <f:ajax render="ordenTable"/>
                             </h:selectOneMenu>
                         </div></td>
-                <td><div align="center"><b>Buscar por:</b>
+                    <td><div align="center"><b>#{msgs.buscarPor}</b>
                         <h:selectOneMenu value="#{movimientoBean.criterioActualBusqueda}">
                             <f:selectItem itemValue="1" itemLabel="Concepto"/>
                             <f:selectItem itemValue="2" itemLabel="Tipo"/>
                         </h:selectOneMenu>
                 <h:inputText value="#{movimientoBean.stringBusqueda}"></h:inputText>
-                        <h:commandButton class="button1" value="Buscar" action="#{movimientoBean.doBuscar()}">
+                <h:commandButton class="button1" value="#{msgs.buscar}" action="#{movimientoBean.doBuscar()}">
                         </h:commandButton>
                     </div></td></tr>
             </table>
             <h:dataTable id = "ordenTable"  value="#{movimientoBean.listaMovimientosOrden}" var="listaMovimientos" class="customers" >
                 <h:column >
                     <f:facet name="header">
-                        Nombre
+                        #{msgs.nombre}
                     </f:facet>
                     #{empleadoBean.usuarioSeleccionado.nombre}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Apellidos
+                        #{msgs.apellidos}
                     </f:facet>
                     #{empleadoBean.usuarioSeleccionado.apellidos}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        DNI
+                        #{msgs.dni}
                     </f:facet>
                     #{empleadoBean.usuarioSeleccionado.dni}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Concepto
+                        #{msgs.concepto}
                     </f:facet>
                     #{listaMovimientos.concepto}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Tipo de Movimiento
+                        #{msgs.tipoMovimiento}
                     </f:facet>
                     #{listaMovimientos.tipo}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Fecha
+                        #{msgs.fecha}
                     </f:facet>
                     #{listaMovimientos.fecha}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Cantidad
+                        #{msgs.cantidad}
                     </f:facet>
                     #{listaMovimientos.cantidad}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Entidad
+                        #{msgs.entidad}
                     </f:facet>
                     #{listaMovimientos.entidad}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Empleado Supervisor (DNI)
+                        #{msgs.empleadoSupervisorDNI}
                     </f:facet>
                     #{empleadoBean.usuario.dni}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Editar Movimiento
+                        #{msgs.editarMovimiento}
                     </f:facet>
 
-                    <h:commandButton styleClass="button1" value="Editar" action="#{empleadoBean.doEditarMovimiento(listaMovimientos.idMovimiento)}"/>
+                    <h:commandButton styleClass="button1" value="#{msgs.editar}" action="#{empleadoBean.doEditarMovimiento(listaMovimientos.idMovimiento)}"/>
 
                 </h:column>    
             </h:dataTable>
 
-            <h:button outcome="empleado_nuevoeditarMovimiento" value="Insertar Nuevo Movimiento para el usuario con DNI: #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/>        
+            <h:button outcome="empleado_nuevoeditarMovimiento" value="#{msgs.insertarMovimientoUsuarioDNI} #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/>        
         </h:form>
     </h:body>
 </html>

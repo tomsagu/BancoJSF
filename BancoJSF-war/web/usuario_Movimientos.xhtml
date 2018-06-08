@@ -46,31 +46,31 @@
                 <h:dataTable id="ordenTable" class="customers" value="#{usuarioBean.listaMovimientosOrden}" var="movimientos" >
                     <h:column>
                         <f:facet name="header">
-                            Fecha
+                            #{msgs.fecha}
                         </f:facet>
                         #{movimientos.fecha}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Entidad
+                            #{msgs.entidad}
                         </f:facet>
                         #{movimientos.entidad}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Concepto
+                            #{msgs.concepto}
                         </f:facet>
                         #{movimientos.concepto}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Tipo de Movimiento
+                            #{msgs.tipoMovimiento}
                         </f:facet>
                         #{movimientos.tipo}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            Cantidad
+                            #{msgs.cantidad}
                         </f:facet>
                         #{movimientos.cantidad}€
                     </h:column>

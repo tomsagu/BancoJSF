@@ -10,7 +10,6 @@ import banco.ejb.UsuarioFacade;
 import banco.entity.Movimiento;
 import banco.entity.Usuario;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

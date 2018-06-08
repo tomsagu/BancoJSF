@@ -8,15 +8,11 @@ package banco.bean;
 import banco.ejb.UsuarioFacade;
 import banco.entity.Usuario;
 import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
+
 
 /**
  *

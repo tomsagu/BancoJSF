@@ -23,15 +23,13 @@ import javax.inject.Inject;
 @Named(value = "transferenciaBean")
 @RequestScoped
 public class TransferenciaBean {
-
+    @Inject
+    private LoginBean login;  
     @EJB
     private MovimientoFacade movimientoFacade;
 
     @EJB
     private UsuarioFacade usuarioFacade;
-    
-    @Inject
-    private LoginBean login;       
     
     // variables
     Usuario usuario;
@@ -81,7 +79,7 @@ public class TransferenciaBean {
     }
     
     public String doTransferencia() {
-        usuario = login.usuario;
+        usuario = login.getUsuario();
         cantidadDouble = Double.parseDouble(cantidad);
         Usuario busqueda = this.usuarioFacade.findByDni(movimiento.getEntidad());
         Double saldoUsuario = usuario.getSaldo();

@@ -22,16 +22,13 @@
 
                         <td>#{msgs.saldo}#{msgs.dosPuntos} #{loginBean.usuario.saldo}€</td>
                         <td>
-
                             <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
-
-
                         </td></tr>
             </table>
         
             <table class="customers">
                 <tr>
-                    <td>#{msgs.beneficiario}</td>
+                    <td>#{msgs.beneficiario} (#{msgs.dni})</td>
                     <td><h:inputText id="beneficiario" value="#{transferenciaBean.movimiento.entidad}"></h:inputText></td>
                 </tr>                
                 <tr>

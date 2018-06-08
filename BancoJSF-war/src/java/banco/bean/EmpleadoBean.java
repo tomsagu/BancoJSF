@@ -31,8 +31,6 @@ public class EmpleadoBean implements Serializable{
     private LoginBean loginBean;
     @EJB
     private UsuarioFacade usuarioFacade;
-    @EJB
-    private MovimientoFacade movimientoFacade;
 
     private String ordenActual;
     private Map<String, List<Movimiento>> movimientosMap  = new HashMap<>();
@@ -117,8 +115,7 @@ public class EmpleadoBean implements Serializable{
     /**
      * Creates a new instance of EmpleadoBean
      */
-    public EmpleadoBean() {
-       
+    public EmpleadoBean() {  
     }
     
     @PostConstruct
@@ -126,8 +123,7 @@ public class EmpleadoBean implements Serializable{
        usuario = this.loginBean.getUsuario();
        //Con ajax no se usa
        //Crea la lista solo con los usuarios (clientes del banco), no empleados
-       //this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0); 
-       
+       //this.listaUsuarios = this.usuarioFacade.buscarUsuarios(0);  
     }
     
     public String doEditar(Integer id){
@@ -153,6 +149,5 @@ public class EmpleadoBean implements Serializable{
     public String doUsuarios(){
         this.usuarioSeleccionado = null;  
         return "empleado_Usuario";
-    }
-    
+    } 
 }

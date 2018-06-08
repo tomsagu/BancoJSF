@@ -14,10 +14,9 @@
             <h:form>
                 <ul1>
                     <h:commandLink id="a" class="notActive" value="#{msgs.usuarios}" action="#{empleadoBean.doUsuarios()}" styleClass="a" />
-
                 </ul1>
                 <table class="customers">
-                    <td> <h2>#{msgs.listaDeMovimientos} #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2> </td>
+                    <td><h2>#{msgs.listaDeMovimientos} #{empleadoBean.usuarioSeleccionado.nombre} #{empleadoBean.usuarioSeleccionado.apellidos}</h2></td>
                     <td>
                         <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                     </td>
@@ -35,7 +34,9 @@
                                 <h:inputText value="#{movimientoBean.stringBusqueda}"></h:inputText>
                                 <h:commandButton class="button1" value="#{msgs.buscar}" action="#{movimientoBean.doBuscar()}">
                                 </h:commandButton>
-                            </div></td></tr>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
                 <h:dataTable id = "ordenTable"  value="#{movimientoBean.listaMovimientosOrden}" var="listaMovimientos" class="customers" >
                     <h:column >
@@ -96,12 +97,9 @@
                         <f:facet name="header">
                             #{msgs.editarMovimiento}
                         </f:facet>
-
                         <h:commandButton styleClass="button1" value="#{msgs.editar}" action="#{empleadoBean.doEditarMovimiento(listaMovimientos.idMovimiento)}"/>
-
                     </h:column>    
                 </h:dataTable>
-
                 <h:button outcome="empleado_nuevoeditarMovimiento" value="#{msgs.insertarMovimientoUsuarioDNI} #{empleadoBean.usuarioSeleccionado.dni}" class="button1"/>        
             </h:form>
         </h:body>

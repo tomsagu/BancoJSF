@@ -21,7 +21,7 @@ and open the template in the editor.
                     <h:link class="a" outcome="empleado_Usuario" value="#{msgs.usuarios}"/>
                 </ul1>
                 <table class="customers">
-                    <td> <h2>#{msgs.hola} #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos} #{msgs.listaUsuarios}</h2> </td>
+                    <td><h2>#{msgs.hola} #{empleadoBean.usuario.nombre} #{empleadoBean.usuario.apellidos} #{msgs.listaUsuarios}</h2></td>
                     <td>
                         <h:commandLink class="button2" value="#{msgs.salir}" action="#{loginBean.borrarSesion()}" styleClass="button2" />
                     </td>
@@ -30,7 +30,8 @@ and open the template in the editor.
                                     <f:selectItems value="#{usuarioBean.opcionesOrdenUsuario}"/>
                                     <f:ajax render="ordenTable cab"/>
                                 </h:selectOneMenu>
-                            </div></td>
+                            </div>
+                        </td>
                         <td><div align="center"><b>#{msgs.buscarPor}</b>
                                 <h:selectOneMenu value="#{usuarioBean.criterioActualBusqueda}">
                                     <f:selectItem itemValue="1" itemLabel="Nombre"/>
@@ -39,11 +40,13 @@ and open the template in the editor.
                                 <h:inputText value="#{usuarioBean.stringBusqueda}"></h:inputText>
                                 <h:commandButton class="button1" value="#{msgs.buscar}" action="#{usuarioBean.doBuscar()}">
                                 </h:commandButton>
-                            </div></td></tr>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
 
                 <h:dataTable id = "ordenTable" value="#{usuarioBean.listaUsuariosOrden}" var="listaUsuarios" class="customers">
-                    <h:column >
+                    <h:column>
                         <f:facet name="header">
                             #{msgs.nombre}
                         </f:facet>
@@ -90,25 +93,19 @@ and open the template in the editor.
                             #{msgs.alta}
                         </f:facet>
                         <!--El !=0 es para pasar el short a boolean-->
-
                         <h:selectBooleanCheckbox value="#{listaUsuarios.estado!=0}" disabled="true"/>
-
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             #{msgs.editarUsuario}
                         </f:facet>
-
                         <h:commandButton styleClass="button1" value="#{msgs.editar}" action="#{empleadoBean.doEditar(listaUsuarios.idUsuario)}"/>
-
                     </h:column>  
                     <h:column>
                         <f:facet name="header">
                             #{msgs.movimientos}
                         </f:facet>
-
                         <h:commandButton value="#{msgs.movimientos}" action="#{empleadoBean.doMovimientos(listaUsuarios.idUsuario)}" class="button1"/>
-
                     </h:column> 
                 </h:dataTable>
                 <h:button outcome="empleado_nuevoEditarUsuario" value="#{msgs.insertarNuevoUsuario}" class="button1"/>  

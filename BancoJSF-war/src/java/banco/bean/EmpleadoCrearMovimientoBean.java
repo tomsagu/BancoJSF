@@ -30,10 +30,8 @@ import javax.inject.Inject;
 @Named(value = "empleadoCrearMovimientoBean") 
 @RequestScoped
 public class EmpleadoCrearMovimientoBean {
-
     @EJB
     private UsuarioFacade usuarioFacade;
-
     @EJB
     private MovimientoFacade movimientoFacade;
     
